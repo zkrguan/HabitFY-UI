@@ -1,3 +1,3 @@
 # HabitFY-UI
 
-Standing by for Sujan 
+Will push the basic layout by tomorrow before our lecture.
