@@ -1,0 +1,66 @@
+.mainCard {
+    margin-top: 10px;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.card-header {
+    font-size: 14px;
+    color: white;
+    margin-bottom: 4px;
+}
+
+.innerCard {
+    border-radius: 0 !important;
+    font-size: 11px;
+    margin-bottom: 1px;
+    padding-top: 5px;
+    padding-bottom: 15px;
+    background-color: rgba(243, 234, 234, 0.7);
+    cursor: pointer;
+}
+
+.innerCard:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s;
+}
+
+.innerCard .card-text {
+    padding-left: 10px;
+}
+
+.selected {
+    background-color: rgba(155, 155, 166, 0.5);
+    color: #effbef;
+}
+
+img {
+    margin-left: 3px;
+    width: 15px;
+}
+
+.myButton {
+    font-family: 'Chakra Petch', sans-serif;
+    padding: 5px 10px;
+    font-size: 13px;
+    font-weight: 500;
+    margin: 6px auto;
+    display: block;
+    background-color: rgb(98, 169, 79);
+    /* color: white; */
+}
+
+
+@media screen and (max-width: 768px) {
+    .card-header {
+        font-size: 12px;
+    }
+
+    .innerCard {
+        font-size: 10px;
+        padding-bottom: 10px;
+    }
+
+    .myButton {
+        font-size: 10px;
+    }
+}

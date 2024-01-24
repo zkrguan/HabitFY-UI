@@ -1,0 +1,16 @@
+body {
+    margin: 0;
+    padding: 0;
+    /* background-image: url('assets/images/background.png'); */
+    /* background-color: rgb(223, 217, 217)!important; */
+    background: linear-gradient(120deg, #293d49, #3c2447);
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-attachment: fixed; 
+    min-height: 100vh; 
+}
+
+html {
+    height: 100%;
+}

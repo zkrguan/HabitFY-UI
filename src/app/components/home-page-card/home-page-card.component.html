@@ -1,0 +1,27 @@
+<div class="mainCard card" style="width: 18rem;">
+  <div class="card-header text-center">
+    {{ title }}
+  </div>
+
+  <ng-container *ngIf="(title === 'Habits' && habits && habits.length > 0) || 
+                        (title === 'Dailies' && dailies && dailies.length > 0); else noDate">
+    <div *ngFor="let data of (title === 'Habits' ? habits : dailies)" [class.selected]="data.selected"
+      (click)="onItemClick(data)" class="innerCard card mx-auto" style="width: 17rem;">
+      <div class="d-flex align-items-center">
+        <p class="card-text m-0">{{ data.value }}</p>
+        <ng-container *ngIf="data.selected">
+          <img src="assets/images/checked.png" class="ml-2">
+        </ng-container>
+      </div>
+    </div>
+    <ng-container *ngIf="button">
+      <button type="submit" class="myButton btn">{{button}}</button>
+    </ng-container>
+  </ng-container>
+
+  <ng-template #noDate>
+    <div class="innerCard card mx-auto" style="width: 17rem;">
+      <p class="card-text">No {{ title.toLowerCase() }} available.</p>
+    </div>
+  </ng-template>
+</div>

@@ -1,0 +1,12 @@
+.currentDate {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 12px;
+    margin-top: 8px;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .currentDate {
+        font-size: 11px;
+    }
+}

@@ -1,0 +1,114 @@
+.mainDiv {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+}
+
+.mainDiv form {
+    padding: 0 40px;
+    box-sizing: border-box;
+}
+
+.mainDiv h4 {
+    text-align: center;
+    padding: 20px 0 20px 0;
+    border-bottom: 1px solid silver;
+}
+
+form .userInput {
+    position: relative;
+    border-bottom: 2px solid #adadad;
+    margin: 20px 0;
+}
+
+.userInput input:focus~label,
+.userInput input:valid~label {
+    top: -5px;
+    color: #0c4d78;
+}
+
+.userInput input:focus~span::before,
+.userInput input:valid~span::before {
+    width: 100%;
+}
+
+.userInput label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    color: #5a5959;
+    transform: translateY(-50%);
+    font-size: 13px;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.userInput input {
+    width: 100%;
+    padding: 0 5px;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    background: none;
+    outline: none;
+}
+
+.userInput span::before {
+    content: '';
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: #0c4d78;
+    transition: .5s;
+}
+
+.forgotPassword {
+    margin: -5px 0 20px 5px;
+    color: #5a5959;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.forgotPassword:hover {
+    text-decoration: underline;
+}
+
+.submitButton {
+    width: 35%;
+    height: 40px;
+    border: 1px solid;
+    background: #1c435e;
+    border-radius: 25px;
+    font-size: 13px;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+}
+
+.submitButton:hover {
+    border-color: #2691d9;
+    transition: .5s;
+}
+
+.signup {
+    margin: 25px 0;
+    text-align: center;
+    font-size: 13px;
+    color: #5a5959;
+}
+
+.signup a {
+    color: #003253;
+    text-decoration: none;
+}
+
+.signup a:hover {
+    text-decoration: underline;
+}

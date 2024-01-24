@@ -1,0 +1,130 @@
+.mainDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 590px;
+    background: rgba(9, 0, 24, 0.3);
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.mainTitle {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 20px;
+    text-align: center;
+    padding-bottom: 5px;
+    color: white;
+    border-bottom: solid 1px white;
+}
+
+.formBody {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.inputBox:nth-child(2n) {
+    justify-content: end;
+}
+
+.inputBox {
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+    padding-bottom: 8px;
+}
+
+.inputBox label {
+    color: white;
+    font-size: 12px;
+    margin: 5px 0;
+}
+
+.inputBox input {
+    height: 30px;
+    width: 96%;
+    padding: 0 5px;
+}
+
+input::placeholder {
+    font-size: 11px;
+}
+
+.genderHeading {
+    color: white;
+    font-size: 12px
+}
+
+.genderOptions {
+    color: white;
+}
+
+.genderOptions label {
+    padding: 0 15px 0 4px;
+    font-size: 12px;
+}
+
+.genderOptions label,
+.genderOptions input,
+.registerButton input {
+    cursor: pointer;
+}
+
+.registerButton {
+    margin-top: 20px;
+}
+
+.registerButton input {
+    width: 30%;
+    height: 40px;
+    border: 1px solid;
+    background: #1c435e;
+    border-radius: 25px;
+    font-size: 13px;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+}
+
+@media (max-width: 768px) {
+    .inputBox {
+        width: 100%;
+    }
+
+    .inputBox:nth-child(2n) {
+        justify-content: start;
+    }
+
+    .registerButton input {
+        width: 50%;
+    }
+}
+
+@media (max-width: 480px) {
+    .inputBox:nth-child(2n) {
+        justify-content: start;
+    }
+
+    .container {
+        padding: 20px;
+    }
+
+    .mainTitle {
+        font-size: 18px;
+    }
+
+    .inputBox input {
+        width: 93%;
+    }
+
+    .registerButton input {
+        width: 70%;
+    }
+}

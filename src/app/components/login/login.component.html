@@ -1,0 +1,19 @@
+<div class="mainDiv">
+<h4>HabitFY</h4>
+<form (ngSubmit)="onLogin()">
+<div class="userInput">
+<input type="text" required>
+<span></span>
+<label>Email</label>
+</div>
+<div class="userInput">
+    <input type="password" required>
+    <span></span>
+    <label>Password</label>
+    </div>
+    <div class="forgotPassword">Forgot Password?</div>
+    <div class="d-flex justify-content-center">
+    <input class="submitButton btn" type="submit" value="Login"></div>
+    <div class="signup">Create an account? <a [routerLink]="'/register'">Signup</a></div>
+</form>
+</div>
