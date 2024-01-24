@@ -1,3 +1,4 @@
 # HabitFY-UI
 
-Will push the basic layout by tomorrow before our lecture.
+Made an initial commit, created login, register, and home page for now.
+Sujan
