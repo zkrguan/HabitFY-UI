@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Auth } from 'aws-amplify';
 
 @Component({
   selector: 'app-login',
@@ -9,6 +10,6 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   constructor(private router: Router) {}
   onLogin() {
-    this.router.navigate(['/home']);
+    Auth.federatedSignIn();
   }
 }

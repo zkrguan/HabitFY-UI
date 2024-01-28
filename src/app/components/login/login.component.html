@@ -1,6 +1,6 @@
 <div class="mainDiv">
 <h4>HabitFY</h4>
-<form (ngSubmit)="onLogin()">
+<!-- <form (ngSubmit)="onLogin()"> -->
 <div class="userInput">
 <input type="text" required>
 <span></span>
@@ -13,7 +13,7 @@
     </div>
     <div class="forgotPassword">Forgot Password?</div>
     <div class="d-flex justify-content-center">
-    <input class="submitButton btn" type="submit" value="Login"></div>
+    <input class="submitButton btn" type="submit" (click)="onLogin()" value="Login"></div>
     <div class="signup">Create an account? <a [routerLink]="'/register'">Signup</a></div>
-</form>
+<!-- </form> -->
 </div>

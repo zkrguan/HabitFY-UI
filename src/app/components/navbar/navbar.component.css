@@ -12,6 +12,7 @@
 
 li {
     margin: 0px 40px 0px 0px;
+    cursor: pointer;
 }
 
 .navbar-brand:hover {
