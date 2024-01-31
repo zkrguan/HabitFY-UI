@@ -3,7 +3,8 @@ body {
     padding: 0;
     /* background-image: url('assets/images/background.png'); */
     /* background-color: rgb(223, 217, 217)!important; */
-    background: linear-gradient(120deg, #293d49, #3c2447);
+    /* background: linear-gradient(120deg, #293d49, #3c2447); */
+    background-color: black!important;
     background-size: cover; 
     background-position: center; 
     background-repeat: no-repeat; 

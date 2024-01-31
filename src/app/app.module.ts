@@ -8,10 +8,10 @@ import { HomeUserProfileComponent } from './components/home-user-profile/home-us
 import { HomePageCardComponent } from './components/home-page-card/home-page-card.component';
 import { HabitsCardComponent } from './components/habits-card/habits-card.component';
 import { DailiesCardComponent } from './components/dailies-card/dailies-card.component';
-import { LoginComponent } from './components/login/login.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { FormsModule } from '@angular/forms';
-import { RegisterComponent } from './components/register/register.component';
+import { LandingPageComponent } from './components/landing-page/landing-page.component';
+import { ProfileSetupUpdateComponent } from './components/profile-setup-update/profile-setup-update.component';
 
 @NgModule({
   declarations: [
@@ -21,9 +21,9 @@ import { RegisterComponent } from './components/register/register.component';
     HomePageCardComponent,
     HabitsCardComponent,
     DailiesCardComponent,
-    LoginComponent,
     HomePageComponent,
-    RegisterComponent
+    LandingPageComponent,
+    ProfileSetupUpdateComponent
   ],
   imports: [
     BrowserModule,

@@ -29,7 +29,7 @@
           <ul class="list-group w-100 no-border">
             <li class="goalsTitle list-group-item text-center pt-2">My Main Goals</li>
             <ng-container *ngFor="let g of mainGoals">
-              <li class="sub-list list-group-item list-group-item text-center no-border">{{ g.goal }}</li>
+              <li class="sub-list list-group-item list-group-item text-center no-border subGoals">{{ g.goal }}</li>
             </ng-container>
             <li *ngIf="mainGoals.length === 0" class="sub-list list-group-item text-center no-border">No goals available
             </li>

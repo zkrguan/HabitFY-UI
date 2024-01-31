@@ -1,13 +1,13 @@
 .navbar-brand {
     color: whitesmoke;
     font-family: 'Chakra Petch', sans-serif;
-    font-size: 18px;
+    font-size: 25px;
 }
 
 .nav-link {
     color: whitesmoke;
     font-family: 'Chakra Petch', sans-serif;
-    font-size: 15px;
+    font-size: 21px;
 }
 
 li {
@@ -27,7 +27,7 @@ li {
 }
 
 button {
-    font-size: 0.8rem;
+    font-size: 1.1rem;
     padding: 0.25rem 0.4rem;
 }
 
@@ -42,10 +42,13 @@ nav{
 
 @media (max-width: 768px) {
     .navbar-brand {
-        font-size: 15px;
+        font-size: 22px;
     }
 
     .nav-link {
-        font-size: 12px;
+        font-size: 18px;
+    }
+    img{
+        width: 32px!important;
     }
 }

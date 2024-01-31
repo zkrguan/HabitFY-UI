@@ -7,15 +7,15 @@
 }
 
 .container {
-    max-width: 590px;
-    background: rgba(9, 0, 24, 0.3);
-    padding: 30px;
-    border-radius: 10px;
+    max-width: 790px;
+    padding: 40px;
+    border: 1px solid white;
 }
 
 .mainTitle {
     font-family: 'Chakra Petch', sans-serif;
-    font-size: 20px;
+    font-size: 30px;
+    font-weight: 600;
     text-align: center;
     padding-bottom: 5px;
     color: white;
@@ -37,28 +37,28 @@
     display: flex;
     flex-wrap: wrap;
     width: 50%;
-    padding-bottom: 8px;
+    padding-bottom: 10px;
 }
 
 .inputBox label {
     color: white;
-    font-size: 12px;
+    font-size: 17px;
     margin: 5px 0;
 }
 
 .inputBox input {
-    height: 30px;
+    height: 35px;
     width: 96%;
     padding: 0 5px;
 }
 
 input::placeholder {
-    font-size: 11px;
+    font-size: 17px;
 }
 
 .genderHeading {
     color: white;
-    font-size: 12px
+    font-size: 17px
 }
 
 .genderOptions {
@@ -67,7 +67,7 @@ input::placeholder {
 
 .genderOptions label {
     padding: 0 15px 0 4px;
-    font-size: 12px;
+    font-size: 17px;
 }
 
 .genderOptions label,
@@ -81,16 +81,12 @@ input::placeholder {
 }
 
 .registerButton input {
-    width: 30%;
-    height: 40px;
-    border: 1px solid;
-    background: #1c435e;
-    border-radius: 25px;
-    font-size: 13px;
-    color: white;
-    font-weight: 700;
-    cursor: pointer;
-    outline: none;
+    width: 18%;
+    font-size: 18px;
+    background-color: rgb(83, 199, 51, 0.7);
+    border: 0;
+    font-weight: 600;
+    font-family: 'Chakra Petch', sans-serif;
 }
 
 @media (max-width: 768px) {

@@ -1,11 +1,11 @@
 const awsconfig = {
     Auth: {
       region: 'us-east-1',
-      userPoolId: 'us-east-1_P3AIb3OoJ',
-      userPoolWebClientId: '2hk11bq8o4fn9bkr8f7t3610tc',
+      userPoolId: 'us-east-1_lsLUaoZ8N',
+      userPoolWebClientId: '54ntlct3osltphnap1h5dokm1g',
       oauth: {
-        domain: 'habitfy.auth.us-east-1.amazoncognito.com',
-        scope: ['phone', 'openid' , 'email'],
+        domain: 'habitfy-app.auth.us-east-1.amazoncognito.com',
+        scope: ['email', 'openid' , 'phone'],
         redirectSignIn: 'http://localhost:4200/home',
         redirectSignOut: 'http://localhost:4200',
         responseType: 'code'
