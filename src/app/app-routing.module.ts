@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomePageComponent } from './components/home-page/home-page.component';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
+import { LandingPageComponent } from './components/landing-page/landing-page.component';
+import { ProfileSetupUpdateComponent } from './components/profile-setup-update/profile-setup-update.component';
 
 const routes: Routes = [
   {
-    path: 'login', component: LoginComponent,
+    path: 'login', component: LandingPageComponent,
     data: { navbar: false }
   },
   {
-    path: 'register', component: RegisterComponent,
-    data: { navbar: false }
+    path: 'profile', component:ProfileSetupUpdateComponent,
+    data: { navbar: true }
   },
 
   {
@@ -21,6 +21,9 @@ const routes: Routes = [
   {
     path: '', redirectTo: '/login', pathMatch: 'full',
     data: { navbar: false }
+  },
+  {
+    path: '**', redirectTo: '/login'
   }
 ];
 

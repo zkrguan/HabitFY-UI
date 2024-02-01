@@ -1,6 +1,8 @@
 .card {
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgb(255, 255, 255,0.5);
   border: none;
+  border-radius: 0%;
+  padding-bottom: 18px;
 }
 
 .avatar {
@@ -11,7 +13,7 @@
 
 .avatar img {
   margin-right: 10px;
-  width: 50px;
+  width: 60px;
   height: auto;
 }
 
@@ -22,6 +24,7 @@
 
 .imageAndName {
   margin-bottom: -15px;
+  padding-top: 10px;
 }
 
 .card-title,
@@ -33,29 +36,28 @@
 }
 
 .card-title {
-  font-size: 12px;
+  font-size: 20px;
   color: black;
 }
 
 .card-subtitle {
-  font-size: 10px;
+  font-size: 15px;
 }
 
 .progress-wrapper {
   display: flex;
   align-items: center;
-  width: 19rem;
+  width: 20rem;
 }
 
 .progress {
   border-radius: 5px;
   position: relative;
-  height: 7px;
+  height: 9px;
   width: 70%;
   margin-right: 10px;
   background-color: white;
 }
-
 
 .progress-bar {
   height: 100%;
@@ -70,23 +72,20 @@
 }
 
 .progress-name {
-  margin: 3px 0px;
-  font-size: 10px;
+  margin: 5px 0px;
+  font-size: 14px;
 }
 
 .percentage-value {
-  font-size: 9px;
+  font-size: 13px;
   margin: -5px;
   padding: 0px;
   white-space: nowrap;
+  color: black;
 }
 
-div ul {
-  padding: 100px auto;
-}
-
-.sub-list {
-  font-size: 10px;
+.subGoals{
+  font-size: 17px;
 }
 
 .sub-list:hover {
@@ -96,14 +95,14 @@ div ul {
 
 .goalsTitle {
   font-family: 'Chakra Petch', sans-serif;
-  font-size: 14px;
+  font-size: 22px;
   color: black;
   font-weight: 600;
 }
 
 .goalsTitle,
 .sub-list {
-  background-color: rgba(13, 13, 13, 0);
+  background-color: rgb(255, 255, 255, 0);
 }
 
 .pb-3 {
@@ -119,15 +118,15 @@ div ul {
 }
 
 .displayedQuote {
-  font-size: 12px;
+  font-size: 18px;
   margin-bottom: 5px;
 }
 
 .circle {
   position: relative;
-  width: 50px;
-  height: 50px;
-  background: linear-gradient(#00bfff, #ff0000);
+  width: 65px;
+  height: 65px;
+  background: linear-gradient(#0404b0, #b00404);
   border-radius: 50%;
 }
 
@@ -157,18 +156,25 @@ div ul {
 }
 
 @media (max-width: 768px) {
-
   .card-title,
   .goalsTitle,
   .displayedQuote {
-    font-size: 11px;
+    font-size: 19px;
   }
 
-  .card-subtitle,
-  .sub-list,
+  .card-subtitle {
+    font-size: 15px;
+    margin-bottom: 15px!important;
+  }
+
   .progress-name,
-  .percentage-value {
-    font-size: 9px;
+  .percentage-value{
+    font-size: 13px;
+  }
+
+  .progress-name{
+    margin-top: 5px;
+    margin-bottom: 7px;
   }
 
   .quotes {
@@ -189,7 +195,7 @@ div ul {
 
   .imgNameBar,
   .myMainGoals {
-    padding-bottom: 15px;
+    padding-bottom: 20px;
     border-bottom: 1px solid white;
   }
 }

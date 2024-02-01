@@ -8,9 +8,9 @@ import { Observable } from 'rxjs';
 export class DataService {
   // TODO get from api just a test
   progress = [
-    { name: 'Level of Progress', percentage: 65, color: '#850101', load: false },
-    { name: 'Goals Completed', percentage: 85, color: '#004C03', load: false },
-    { name: 'Goals Remaining', percentage: 75, color: '#00044C', load: false }
+    { name: 'Level of Progress', percentage: 65, color: '#570303', load: false },
+    { name: 'Goals Completed', percentage: 85, color: '#035710', load: false },
+    { name: 'Goals Remaining', percentage: 75, color: '#070357', load: false }
   ];
 
   // TODO get from api just a test
