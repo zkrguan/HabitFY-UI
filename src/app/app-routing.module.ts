@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { ProfileSetupUpdateComponent } from './components/profile-setup-update/profile-setup-update.component';
+import { authGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -11,12 +12,14 @@ const routes: Routes = [
   },
   {
     path: 'profile', component:ProfileSetupUpdateComponent,
-    data: { navbar: true }
+    data: { navbar: true },
+    canActivate: [authGuard]
   },
 
   {
     path: 'home', component: HomePageComponent,
-    data: { navbar: true }
+    data: { navbar: true },
+    canActivate: [authGuard]
   },
   {
     path: '', redirectTo: '/login', pathMatch: 'full',
