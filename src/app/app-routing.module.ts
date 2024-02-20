@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
-import { ProfileSetupUpdateComponent } from './components/profile-setup-update/profile-setup-update.component';
+import { RegisterComponent } from './components/register/register.component';
+import { RegistrationGuard } from './guards/registration.guard';
 
 const routes: Routes = [
   {
@@ -10,12 +11,12 @@ const routes: Routes = [
     data: { navbar: false }
   },
   {
-    path: 'profile', component:ProfileSetupUpdateComponent,
+    path: 'register', component:RegisterComponent,
     data: { navbar: true }
   },
 
   {
-    path: 'home', component: HomePageComponent,
+    path: 'home', component: HomePageComponent, canActivate: [RegistrationGuard],
     data: { navbar: true }
   },
   {
