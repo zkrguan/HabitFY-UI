@@ -11,7 +11,7 @@ import { DailiesCardComponent } from './components/dailies-card/dailies-card.com
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { FormsModule } from '@angular/forms';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
-import { ProfileSetupUpdateComponent } from './components/profile-setup-update/profile-setup-update.component';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,7 @@ import { ProfileSetupUpdateComponent } from './components/profile-setup-update/p
     DailiesCardComponent,
     HomePageComponent,
     LandingPageComponent,
-    ProfileSetupUpdateComponent
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
