@@ -1,0 +1,26 @@
+.mainDiv{
+    color: white;
+}
+
+.habitFY{
+    font-size: 3.5rem;
+    font-weight: bold;
+}
+
+div button{
+    font-size: 19px;
+    background-color: rgb(83, 199, 51,0.7);
+    border: 0;
+    font-weight: 600;
+}
+
+.description{
+    color: whitesmoke;
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 18px;
+}
+
+img{
+    width: 650px;
+}
+  
