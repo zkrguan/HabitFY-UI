@@ -4,6 +4,7 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { RegisterComponent } from './components/register/register.component';
 import { RegistrationGuard } from './guards/registration.guard';
+import { AboutPageComponent } from './components/about-page/about-page.component';
 
 const routes: Routes = [
   {
@@ -14,9 +15,12 @@ const routes: Routes = [
     path: 'register', component:RegisterComponent,
     data: { navbar: true }
   },
-
   {
     path: 'home', component: HomePageComponent, canActivate: [RegistrationGuard],
+    data: { navbar: true }
+  },
+  {
+    path: 'about', component: AboutPageComponent,
     data: { navbar: true }
   },
   {
