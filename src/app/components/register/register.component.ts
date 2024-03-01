@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Register } from 'src/app/interfaces/register';
-import { Auth } from 'aws-amplify';
 import { AuthService } from 'src/app/services/auth.service';
 import { RegisterProfileService } from 'src/app/services/register-profile.service';
 

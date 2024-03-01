@@ -1,27 +1,53 @@
-<div class="mainCard card" style="width: 25rem;">
-  <div class="card-header text-center">
-    {{ title }}
-  </div>
-
-  <ng-container *ngIf="(title === 'Habits' && habits && habits.length > 0) || 
-                        (title === 'Dailies' && dailies && dailies.length > 0); else noDate">
-    <div *ngFor="let data of (title === 'Habits' ? habits : dailies)" [class.selected]="data.selected"
-      (click)="onItemClick(data)" class="innerCard card mx-auto" style="width: 24rem;">
-      <div class="d-flex align-items-center">
-        <p class="card-text m-0">{{ data.value }}</p>
-        <ng-container *ngIf="data.selected">
-          <img src="assets/images/checked.png" class="ml-2">
-        </ng-container>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center align-items-center">
+      <div class="mainCard card" style="width: 25rem; padding-bottom: 20px;">
+        <div class="card-header text-center">
+          Your Goals
+        </div>
+      
+        <div *ngFor="let goal of goalData" [class.selected]="goal.id === goalSelected" (click)="onGoalSelection(goal)" class="innerCard card mx-auto" style="width: 24rem;">
+          <div class="d-flex align-items-center">
+            <p class="card-text m-0">{{ goal.description }}</p>
+            <ng-container *ngIf="goal.id === goalSelected">
+              <img src="assets/images/checked.png" class="ml-2">
+            </ng-container>
+          </div>
+        </div>
       </div>
     </div>
-    <ng-container *ngIf="button">
-      <button type="submit" class="myButton btn">{{button}}</button>
-    </ng-container>
-  </ng-container>
-
-  <ng-template #noDate>
-    <div class="innerCard card mx-auto" style="width: 24rem;">
-      <p class="card-text">No {{ title.toLowerCase() }} available.</p>
+    <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center align-items-center">
+      <section class="goalDetailsMainSection" *ngIf="goalSelected; else goalNotSelected">
+      <div class="mainCard card" style="width: 25rem; padding-bottom: 10px;">
+        <div class="card-header text-center">
+          Selected Goal Details
+        </div>
+        
+        <ul class="goalDetails">
+          <div class="innerCard">
+          <li><span>Start Date: {{goalDataById.startDate | date}}</span></li></div>
+          <div class="innerCard"> <span><li>End Date: {{goalDataById.endDate | date}}</li></span></div>
+          <ng-container *ngIf="goalDataById.isQuitting else notQuitting">
+            <div class="innerCard"> <span><li>Decrease To: {{goalDataById.goalValue}}</li></span></div>
+              <div class="innerCard"><li>Your goal is to <span class="toBoldText">quit</span> this habit.</li></div>
+          </ng-container>
+          <div class="innerCard">  <li *ngIf="goalDataById.isActivated; else notActivated">This goal <span class="toBoldText">is activated.</span></li></div>
+        </ul>
+        <ng-template #notActivated><li>This goal is <span class="toBoldText">not activated.</span></li></ng-template>
+        <ng-template #notQuitting>
+          <div class="innerCard"><li><span>Increase To: {{goalDataById.goalValue}}</span></li></div>
+          <div class="innerCard"><li>Your goal is to <span class="toBoldText">amplify</span> this habit.</li></div></ng-template>
+          <div class="d-flex justify-content-center">
+            <ng-container *ngIf="goalDataById.isActivated; else notActivatedBtn">
+          <button class="myButton btn" (click)="activateOrDeactivate()">Deactivate</button></ng-container>
+          <ng-template #notActivatedBtn><button class="myButton btn" (click)="activateOrDeactivate()">Activate</button></ng-template>
+          <button type="submit" class="myButton btn">Update</button></div>
+      </div>
+      </section>
+      <ng-template #goalNotSelected>
+        <div class="goalNotSelectedMessage">Select your goal if created to see its details.</div>
+      </ng-template>
     </div>
-  </ng-template>
+  </div>
 </div>
+
