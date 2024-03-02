@@ -101,4 +101,25 @@ export class GoalService {
       throw new Error('Unable to change the activation state of a goal!');
     }
   }
+
+    // put request for updating goal
+    async updateGoalData(updateData: any, id:Number) {
+      try {
+        const session = await Auth.currentSession();
+        const accessToken = session.getAccessToken().getJwtToken();
+        const headers = new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${accessToken}`,
+        });
+        const url = `${environment.url}/api/v1/Goal/${id}`;
+        console.log('Update URL:', url, '| Goal Data:', updateData);
+        const res = await this.http
+          .put(url, updateData, { headers, responseType: 'text' })
+          .toPromise();
+        return res;
+      } catch (err) {
+        console.error('Unable to update user goal:', err);
+        throw new Error('Unable to update user goal!');
+      }
+    }
 }

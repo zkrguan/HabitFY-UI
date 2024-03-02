@@ -11,17 +11,17 @@
     <div class="collapse navbar-collapse" [ngClass]="{'show': !isNavbarCollapsed}" id="navbarHabitfy">
       <div class="row mx-auto">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" [routerLink]="'/home'">Home</a>
+          <li class="nav-item" routerLinkActive="active" #homeNav="routerLinkActive">
+            <a class="nav-link" [routerLink]="'/home'" [class.disabled]="homeNav.isActive">Home</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]="'/register'">Profile</a>
+          <li class="nav-item" routerLinkActive="active" #registerNav="routerLinkActive">
+            <a class="nav-link" [routerLink]="'/register'" [class.disabled]="registerNav.isActive">Profile</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]="'/goal'">Goal</a>
+          <li class="nav-item" routerLinkActive="active" #goalNav="routerLinkActive">
+            <a class="nav-link" [routerLink]="'/goal'" [class.disabled]="goalNav.isActive">Goal</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]="'/about'">About us</a>
+          <li class="nav-item" routerLinkActive="active" #aboutNav="routerLinkActive">
+            <a class="nav-link" [routerLink]="'/about'" [class.disabled]="aboutNav.isActive">About us</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" (click)="signOut()" >Sign Out</a>

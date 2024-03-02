@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Register } from 'src/app/interfaces/register';
 import { AuthService } from 'src/app/services/auth.service';
 import { RegisterProfileService } from 'src/app/services/register-profile.service';
+import { Auth } from 'aws-amplify';
 
 @Component({
   selector: 'app-register',
@@ -36,7 +37,7 @@ export class RegisterComponent {
     private authService: AuthService,
     private registerProfileService: RegisterProfileService,
     private router: Router
-  ) {}
+  ) { }
 
   async ngOnInit() {
     this.userId = await this.authService.getCognitoUserId();
@@ -56,6 +57,7 @@ export class RegisterComponent {
         reqRegisterData
       );
       console.log('Server response:', res);
+      await this.updateUserFirstLoginStatus();
       this.router.navigate(['/home']);
     } catch (err) {
       console.error('Error:', err);
@@ -106,7 +108,7 @@ export class RegisterComponent {
       }
     } catch (error) {
       console.error('Error loading user data:', error);
-      this.errMsg = 'Error! Unable to fetch user data!';
+      // this.errMsg = 'Error! Unable to fetch user data!';
     }
   }
 
@@ -125,6 +127,7 @@ export class RegisterComponent {
           reqRegisterData
         );
         console.log('Server response:', res);
+        await this.updateUserFirstLoginStatus();
         this.router.navigate(['/home']);
       } catch (err) {
         console.error('Error:', err);
@@ -153,6 +156,18 @@ export class RegisterComponent {
         console.error('Error:', err);
         this.errMsg = 'Unable to update your profile!';
       }
+    }
+  }
+
+  async updateUserFirstLoginStatus() {
+    try {
+      const user = await Auth.currentAuthenticatedUser();
+      await Auth.updateUserAttributes(user, {
+        'custom:firstLogin': 'false',
+      });
+      await Auth.currentAuthenticatedUser({ bypassCache: true });
+    } catch (error) {
+      console.error('Error updating user attributes:', error);
     }
   }
 

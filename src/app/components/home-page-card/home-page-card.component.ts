@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Goal } from 'src/app/interfaces/goal';
 import { AuthService } from 'src/app/services/auth.service';
@@ -19,6 +19,8 @@ export class HomePageCardComponent {
   goalDataById: Goal = {};
   
   goalSelected: string|null = null;
+
+  isGoalFound:boolean = false;
   
 constructor( private authService: AuthService,
   private goalService: GoalService,
@@ -44,6 +46,7 @@ constructor( private authService: AuthService,
           'User goals after getting from get route:',
           this.goalData
         );
+        this.isGoalFound = true;
       }
     } catch (error) {
       console.error('Error loading user goal:', error);
@@ -93,5 +96,9 @@ constructor( private authService: AuthService,
         console.error('Error:', err);
         this.errMsg = 'Unable to register your goal!';
       }
+  }
+
+  goToGoalPage() {
+    this.router.navigate(['/goal', this.goalDataById.id, this.goalDataById.isActivated]);
   }
 }

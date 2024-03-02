@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center align-items-center">
+      <ng-container *ngIf="isGoalFound; else goalDataNotAvailable">
       <div class="mainCard card" style="width: 25rem; padding-bottom: 20px;">
         <div class="card-header text-center">
           Your Goals
@@ -14,7 +15,10 @@
             </ng-container>
           </div>
         </div>
-      </div>
+      </div></ng-container>
+      <ng-template #goalDataNotAvailable>
+        <div class="goalMessage">Create your goals to view it.</div>
+      </ng-template>
     </div>
     <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center align-items-center">
       <section class="goalDetailsMainSection" *ngIf="goalSelected; else goalNotSelected">
@@ -41,11 +45,11 @@
             <ng-container *ngIf="goalDataById.isActivated; else notActivatedBtn">
           <button class="myButton btn" (click)="activateOrDeactivate()">Deactivate</button></ng-container>
           <ng-template #notActivatedBtn><button class="myButton btn" (click)="activateOrDeactivate()">Activate</button></ng-template>
-          <button type="submit" class="myButton btn">Update</button></div>
+          <button class="myButton btn" (click)="goToGoalPage()">Update</button></div>
       </div>
       </section>
       <ng-template #goalNotSelected>
-        <div class="goalNotSelectedMessage">Select your goal if created to see its details.</div>
+        <div class="goalMessage">Select your goal if created to see its details.</div>
       </ng-template>
     </div>
   </div>

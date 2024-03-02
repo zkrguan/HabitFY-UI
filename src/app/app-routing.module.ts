@@ -22,7 +22,11 @@ const routes: Routes = [
   },
   {
     path: 'goal', component: GoalComponent, canActivate: [RegistrationGuard],
-    data: { navbar: true }
+    data: { navbar: true, mode:'create' }
+  },
+  {
+    path: 'goal/:id/:isActivated', component: GoalComponent, canActivate: [RegistrationGuard],
+    data: { navbar: true, mode:'update' }
   },
   {
     path: 'about', component: AboutPageComponent,
