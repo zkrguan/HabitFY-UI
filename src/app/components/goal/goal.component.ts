@@ -13,6 +13,7 @@ import { GoalService } from 'src/app/services/goal.service';
 export class GoalComponent {
   errMsg: string = '';
   userId: string = '';
+  userEmail: string = '';
   minStartDate: string;
   minEndDate: string;
   goalIdFromHomePageCard: Number = -1;
@@ -80,11 +81,13 @@ export class GoalComponent {
   // invokes post route by calling method in goal service
   async onGoalRegister(goalForm: NgForm) {
     console.log(this.goalData);
+    this.userEmail = await this.authService.getCognitoUserEmail();
     if (goalForm.valid) {
       try {
         const reqGoalData = {
           ...goalForm.value,
           profileId: this.userId,
+          emailAddress: this.userEmail,
         };
         console.log('Goal Register Form:', reqGoalData);
         const res = await this.goalService.postGoalData(

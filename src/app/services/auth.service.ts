@@ -14,9 +14,21 @@ export class AuthService {
       console.log("Username:", user.username);
       return user.username;
     } catch (error) {
-      throw new Error('Failed to retrieve user ID.');
+      throw new Error('Unable to get username.');
     }
   }
+
+  async getCognitoUserEmail(): Promise<string> {
+    try {
+      const user = await Auth.currentAuthenticatedUser();
+      const email = user.attributes.email;
+      console.log("Email:", email);
+      return email;
+    } catch (error) {
+      throw new Error('Unable to get user email.');
+    }
+  }
+  
 
   // retrieves AWS's custom attributes value
   async getUserParametersFromCognito() {
