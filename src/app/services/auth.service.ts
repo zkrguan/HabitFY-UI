@@ -7,6 +7,7 @@ import { Auth } from 'aws-amplify';
 export class AuthService {
   private isRegistered: boolean | undefined;
   constructor() { }
+  // retrieves current user's username
   async getCognitoUserId(): Promise<string> {
     try {
       const user = await Auth.currentAuthenticatedUser();
@@ -17,6 +18,7 @@ export class AuthService {
     }
   }
 
+  // retrieves AWS's custom attributes value
   async getUserParametersFromCognito() {
     if (this.isRegistered === true) {
       return this.isRegistered;

@@ -57,6 +57,7 @@ export class RegisterComponent {
         reqRegisterData
       );
       console.log('Server response:', res);
+      // after registering user profile, updating AWS custom attribute
       await this.updateUserFirstLoginStatus();
       this.router.navigate(['/home']);
     } catch (err) {
@@ -127,6 +128,7 @@ export class RegisterComponent {
           reqRegisterData
         );
         console.log('Server response:', res);
+        // after registering user profile, updating AWS custom attribute
         await this.updateUserFirstLoginStatus();
         this.router.navigate(['/home']);
       } catch (err) {
@@ -159,6 +161,7 @@ export class RegisterComponent {
     }
   }
 
+  // updates custom attribute at the AWS
   async updateUserFirstLoginStatus() {
     try {
       const user = await Auth.currentAuthenticatedUser();

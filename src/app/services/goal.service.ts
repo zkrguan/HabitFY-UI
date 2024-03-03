@@ -60,6 +60,7 @@ export class GoalService {
     }
   }
 
+  // get goal by id for current user
   async getUserGoalById(id: Number): Promise<Goal | null | undefined> {
     try {
       const session = await Auth.currentSession();
@@ -68,7 +69,7 @@ export class GoalService {
         Authorization: `Bearer ${accessToken}`,
       });
       const url = `${environment.url}/api/v1/Goal/${id}`;
-      // mapping with <Goal> interface to invoking get request
+      // mapping with <Goal> interface for invoking get request
       return await this.http.get<Goal>(url, { headers }).toPromise();
     } catch (err) {
       if (err instanceof HttpErrorResponse) {
@@ -83,6 +84,7 @@ export class GoalService {
     }
   }
 
+  // to activate or deactivate goal state
   async activateOrDeactivateGoal(isActivationTrue: boolean, id:number){
     try {
       const session = await Auth.currentSession();

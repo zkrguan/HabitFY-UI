@@ -17,10 +17,10 @@ export class GoalComponent {
   minEndDate: string;
   goalIdFromHomePageCard: Number = -1;
   isActivated: boolean = false;
+  // this value is coming from route
+  // if user trying to update goal then its value is update
+  // if user trying to create goal then its value is create
   mode: string = '';
-
-  // initializing it to true and changing it based on GET request response
-  isFirstTimeRegistering: boolean = true;
 
   goalData: Goal = {
     description: null,
@@ -42,6 +42,8 @@ export class GoalComponent {
       this.mode = data['mode'];
     });
 
+    // when user is trying to update goal from home page
+    // id and isActivated is passed as params
     if (this.mode === 'update') {
       this.route.params.subscribe(params => {
         this.goalIdFromHomePageCard = params['id'];
@@ -55,11 +57,14 @@ export class GoalComponent {
     console.log("goal id at goal page: ", this.goalIdFromHomePageCard);
     console.log("goal page this.mode value: ", this.mode);
     console.log("goal page activation status: ", this.isActivated);
+    // if it's about updating goal then, load goal into the form
     if (this.mode === 'update') {
       await this.loadUserGoal();
     }
   }
 
+  // function to ensure end date is after the start date
+  // TODO if user selects end date first then this logic may not work, needs as update for this
   minEndDateBasedOnStartDate() {
     if (this.goalData.startDate) {
       const startDate = new Date(this.goalData.startDate);
@@ -67,6 +72,7 @@ export class GoalComponent {
     }
   }
 
+  // as date string value includes time as well, so, splitting it to get date only
   splitToIncludeDateOnly(date: Date): string {
     return date.toISOString().split('T')[0];
   }
@@ -93,6 +99,7 @@ export class GoalComponent {
     }
   }
 
+  // loading user goal by id
   async loadUserGoal() {
     try {
       const userGoal = await this.goalService.getUserGoalById(
@@ -104,6 +111,7 @@ export class GoalComponent {
       } else {
         console.log('User goalByGoalId in goal page:', userGoal);
         this.goalData = userGoal;
+        // splitting date and time, and only retrieving date
         if (this.goalData.startDate) {
           const startDate = new Date(this.goalData.startDate);
           this.goalData.startDate = this.splitToIncludeDateOnly(startDate);
@@ -122,8 +130,6 @@ export class GoalComponent {
       this.errMsg = 'Error! Unable to fetch user goal!';
     }
   }
-
-
 
   // invokes put route by calling method in goal service
   async onGoalUpdate(goalForm: NgForm) {
