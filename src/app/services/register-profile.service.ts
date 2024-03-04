@@ -13,6 +13,7 @@ import { AuthService } from './auth.service';
   providedIn: 'root',
 })
 export class RegisterProfileService {
+  // private isRegistered: boolean | undefined;
   constructor(private http: HttpClient, private authService: AuthService) {}
 
   // included access token in the headers
@@ -85,19 +86,6 @@ export class RegisterProfileService {
         console.error('An unexpected error occurred:', err);
       }
       throw new Error('Failed to fetch user data');
-    }
-  }
-
-  // checking if user has registered profile or not
-  async userRegistrationStatus(): Promise<boolean> {
-    try {
-      const userData = await this.getUserData(
-        await this.authService.getCognitoUserId()
-      );
-      return !!userData; // changes to boolean based on the response from GET route
-    } catch (err) {
-      console.error('Failed to check user registration status:', err);
-      return false;
     }
   }
 }

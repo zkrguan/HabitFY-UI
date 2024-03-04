@@ -9,12 +9,15 @@
   /></label>
 
 <div class="registerButton d-flex justify-content-center mt-4" *ngIf="!registerData.needReport">
-  <input class="btn btn-light" style="width: 8%;" value="Confirm" (click)="isFirstTimeRegistering? onGeneratingReport(): onUpdatingGenerationOfReport()"/>
+  <input type="submit" class="btn btn-light" style="width: 8%;" value="Confirm" (click)="isFirstTimeRegistering? onGeneratingReport(): onUpdatingGenerationOfReport()"/>
 </div>
 <div class="mainDiv" *ngIf="registerData.needReport">
-  <div class="mainDiv">
   <div class="container">
-    <h1 class="mainTitle">Register a profile</h1>
+    <ng-container *ngIf="isFirstTimeRegistering; else registeredUser">
+    <h1 class="mainTitle">Register a profile</h1></ng-container>
+    <ng-template #registeredUser>
+      <h1 class="mainTitle">Update your profile</h1>
+    </ng-template>
       <!-- to distinguish between update and create -->
     <form #registerForm="ngForm" (ngSubmit)="isFirstTimeRegistering ? onRegister(registerForm) : onUpdate(registerForm)">
       <div class="formBody">
