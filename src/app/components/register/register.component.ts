@@ -14,6 +14,7 @@ import { Auth } from 'aws-amplify';
 export class RegisterComponent {
   errMsg: string = '';
   userId: string = '';
+  userEmail:string='';
 
   // initializing it to true and changing it based on GET request response
   isFirstTimeRegistering: boolean = true;
@@ -41,6 +42,7 @@ export class RegisterComponent {
 
   async ngOnInit() {
     this.userId = await this.authService.getCognitoUserId();
+    this.userEmail = await this.authService.getCognitoUserEmail();
     await this.loadUserData();
   }
 
@@ -51,6 +53,7 @@ export class RegisterComponent {
         ...this.registerData,
         id: this.userId,
         needReport: this.registerData.needReport,
+        emailAddress: this.userEmail
       };
       console.log('Register Form:', reqRegisterData);
       const res = await this.registerProfileService.postRegisterData(
@@ -122,6 +125,7 @@ export class RegisterComponent {
           ...registerForm.value,
           id: this.userId,
           needReport: this.registerData.needReport,
+          emailAddress: this.userEmail
         };
         console.log('Register Form:', reqRegisterData);
         const res = await this.registerProfileService.postRegisterData(
