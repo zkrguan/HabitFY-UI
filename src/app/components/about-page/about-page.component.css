@@ -5,8 +5,12 @@
 .title{
     text-align: center;
     color: whitesmoke;
+.title{
+    text-align: center;
+    color: whitesmoke;
     font-size: 3.5rem;
     font-weight: bold;
+    padding: 2.5%;
     padding: 2.5%;
 }
 

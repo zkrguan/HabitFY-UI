@@ -40,6 +40,11 @@ nav{
     filter: brightness(0) invert(1);
 }
 
+.nav-link.disabled {
+    color: #72787f;
+    font-weight: 600;
+  }
+
 @media (max-width: 768px) {
     .navbar-brand {
         font-size: 22px;

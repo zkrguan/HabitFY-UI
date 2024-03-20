@@ -5,7 +5,7 @@
 }
 
 .card-header {
-    font-size: 21px;
+    font-size: 20px;
     color: white;
     margin-bottom: 4px;
 }
@@ -44,17 +44,47 @@ img {
     padding: 5px 10px;
     font-size: 17px;
     font-weight: 600;
-    margin: 6px auto;
-    /* display: block; */
+    margin: 6px 10px;
     background-color: #53c733b3;
 }
 
+.goalDetails{
+    list-style: none;
+    margin-left: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+}
+
+.goalMessage{
+    font-size: 16px;
+    color: #53c733b3;
+    text-shadow:
+    0 0 1px #53c733b3,
+      0 0 5px #53c733b3,
+      0 0 14px #53c733b3,
+      0 0 38px #fff,
+      0 0 99px #fff,
+      0 0 87px #fff,
+      0 0 100px #fff;
+      margin-top: 50px;
+}
+
+ul li{
+    font-size: 15px;
+}
+section{
+    margin-top: 15px;
+    box-shadow: 0 0 1px #fff,
+            0 0 5px #53c733b3, 
+            inset 0 0 1px #53c733b3; 
+}
+
+span{
+    font-weight: bold;
+}
 
 @media screen and (max-width: 768px) {
-    .card-header {
-        font-size: 20px;
-    }
-
     .innerCard {
         font-size: 17px;
         padding-bottom: 10px;
@@ -62,5 +92,9 @@ img {
 
     .myButton {
         font-size: 15px;
+    }
+
+    .goalNotSelectedMessage{
+        margin-top: 15px;
     }
 }

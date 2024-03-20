@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { RegisterProfileService } from '../services/register-profile.service';
+import { AuthService } from '../services/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +11,10 @@ import { RegisterProfileService } from '../services/register-profile.service';
 // check app-routing where registration guard has been implemented for the home page
 export class RegistrationGuard implements CanActivate {
 
-  constructor(private registerProfileService: RegisterProfileService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   async canActivate(): Promise<boolean> {
-    const isRegistered = await this.registerProfileService.userRegistrationStatus();
+    const isRegistered = await this.authService.getUserParametersFromCognito();
     if (!isRegistered) {
       this.router.navigate(['/register']);
       return false;

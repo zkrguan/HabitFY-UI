@@ -1,0 +1,54 @@
+<div class="mainDiv">
+  <div class="container">
+    <ng-container *ngIf="mode == 'create'">
+      <h1 class="mainTitle">Set up your goal</h1>
+    </ng-container>
+    <ng-container *ngIf="mode == 'update'">
+      <h1 class="mainTitle">Update your goal</h1>
+    </ng-container>
+    <!-- to distinguish between update and create -->
+    <form #goalForm="ngForm" (ngSubmit)="
+        mode == 'create' ? onGoalRegister(goalForm) : onGoalUpdate(goalForm)
+      ">
+      <label for="isQuitting" class="habitQuittingQuestion d-flex justify-content-center">
+        Are you quitting this habit?
+        <input class="checkbox" type="checkbox" id="isQuitting" name="isQuitting"
+          [(ngModel)]="goalData.isQuitting" /></label>
+      <div class="formBody">
+        <div class="inputBox">
+          <label for="startDate">Start date</label>
+          <input type="date" id="startDate" name="startDate" required #msgRef1="ngModel" (focus)="emptyErrMsg()"
+            [(ngModel)]="goalData.startDate" [min]="minStartDate" (change)="minEndDateBasedOnStartDate()" />
+          <small *ngIf="msgRef1.touched && msgRef1.invalid">Select a start date!</small>
+        </div>
+        <div class="inputBox">
+          <label for="endDate">End Date</label>
+          <input type="date" id="endDate" name="endDate" required #msgRef3="ngModel" (focus)="emptyErrMsg()"
+            [(ngModel)]="goalData.endDate" [min]="minEndDate" />
+          <small *ngIf="msgRef3.touched && msgRef3.invalid">Select a valid end date!</small>
+        </div>
+        <div class="inputBox">
+          <label for="description">Description</label>
+          <input type="text" id="description" name="description" placeholder="Enter your description" required
+            #msgRef0="ngModel" (focus)="emptyErrMsg()" [(ngModel)]="goalData.description" />
+          <small *ngIf="msgRef0.touched && msgRef0.invalid">Enter your goal description!</small>
+        </div>
+        <div class="inputBox">
+          <label for="goalValue">Increase to/Reduce to</label>
+          <input type="number" id="goalValue" name="goalValue" placeholder="Enter your goal Value" required
+            #msgRef4="ngModel" (focus)="emptyErrMsg()" [(ngModel)]="goalData.goalValue" />
+          <small *ngIf="msgRef4.touched && msgRef4.invalid">Enter a valid age!</small>
+        </div>
+      </div>
+      <div *ngIf="errMsg" class="text-center">
+        {{ errMsg }}
+      </div>
+      <div class="registerButton d-flex justify-content-center" *ngIf="mode == 'create'">
+        <input type="submit" class="btn btn-light" value="Set up" [disabled]="!goalForm.form.valid" />
+      </div>
+      <div class="registerButton d-flex justify-content-center" *ngIf="mode == 'update'">
+        <input type="submit" class="btn btn-light" value="Update" [disabled]="!goalForm.form.valid" />
+      </div>
+    </form>
+  </div>
+</div>
