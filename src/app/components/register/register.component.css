@@ -131,7 +131,7 @@ small {
 
 @media (max-width: 480px) {
   .inputBox:nth-child(2n) {
-    justify-content: start;
+    
   }
 
   .container {
@@ -149,4 +149,13 @@ small {
   .registerButton input {
     width: 70%;
   }
+}
+
+[hidden]{
+  visibility: hidden;
+  display: none !important;
+}
+
+.hide {
+  visibility: hidden;
 }
