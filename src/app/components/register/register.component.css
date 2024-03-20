@@ -131,7 +131,7 @@ small {
 
 @media (max-width: 480px) {
   .inputBox:nth-child(2n) {
-    
+    justify-content: start;
   }
 
   .container {
