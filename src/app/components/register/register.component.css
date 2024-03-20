@@ -151,10 +151,6 @@ small {
   }
 }
 
-[hidden]{
-  visibility: hidden;
-  display: none !important;
-}
 
 .hide {
   visibility: hidden;
