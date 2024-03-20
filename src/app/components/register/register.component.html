@@ -34,7 +34,7 @@
             (focus)="emptyErrMsg()"
             [(ngModel)]="registerData.province"
           />
-          <small *ngIf="msgRef2.touched && msgRef2.invalid"
+          <small [class.hide]="!(msgRef2.touched && msgRef2.invalid)"
             >Enter a valid province name!</small
           >
         </div>
@@ -51,7 +51,7 @@
             (focus)="emptyErrMsg()"
             [(ngModel)]="registerData.city"
           />
-          <small *ngIf="msgRef1.touched && msgRef1.invalid"
+          <small [class.hide]="!(msgRef1.touched && msgRef1.invalid)"
             >Enter a valid city name!</small
           >
         </div>
@@ -68,7 +68,7 @@
             (focus)="emptyErrMsg()"
             [(ngModel)]="registerData.postalCode"
           />
-          <small *ngIf="msgRef3.touched && msgRef3.invalid"
+          <small [class.hide]="!(msgRef3.touched && msgRef3.invalid)"
             >Enter a valid postal code!</small
           >
         </div>
@@ -86,7 +86,7 @@
             (focus)="emptyErrMsg()"
             [(ngModel)]="registerData.age"
           />
-          <small *ngIf="msgRef4.touched && msgRef4.invalid"
+          <small [class.hide]="!(msgRef4.touched && msgRef4.invalid)"
             >Enter a valid age!</small
           >
         </div>

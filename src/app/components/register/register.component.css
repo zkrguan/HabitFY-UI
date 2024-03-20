@@ -150,3 +150,8 @@ small {
     width: 70%;
   }
 }
+
+
+.hide {
+  visibility: hidden;
+}
