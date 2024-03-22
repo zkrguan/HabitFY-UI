@@ -12,7 +12,6 @@ import { Register } from '../interfaces/register';
   providedIn: 'root',
 })
 export class RegisterProfileService {
-  // private isRegistered: boolean | undefined;
   constructor(private http: HttpClient) {}
 
   // included access token in the headers
