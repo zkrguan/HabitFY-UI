@@ -4,16 +4,16 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Goal } from 'src/app/interfaces/goal';
 import { AuthService } from 'src/app/services/auth.service';
 import { GoalService } from 'src/app/services/goal.service';
-
+import Swal from 'sweetalert2';
+import { Notyf } from 'notyf';
+const notyf = new Notyf();
 @Component({
   selector: 'app-goal',
   templateUrl: './goal.component.html',
   styleUrls: ['./goal.component.css']
 })
 export class GoalComponent {
-  errMsg: string = '';
   userId: string = '';
-  userEmail: string = '';
   minStartDate: string;
   minEndDate: string;
   goalIdFromHomePageCard: Number = -1;
@@ -29,6 +29,7 @@ export class GoalComponent {
     endDate: null,
     isQuitting: false,
     goalValue: null,
+    unit:null
   };
 
   constructor(
@@ -81,23 +82,32 @@ export class GoalComponent {
   // invokes post route by calling method in goal service
   async onGoalRegister(goalForm: NgForm) {
     console.log(this.goalData);
-    this.userEmail = await this.authService.getCognitoUserEmail();
     if (goalForm.valid) {
       try {
         const reqGoalData = {
           ...goalForm.value,
           profileId: this.userId,
-          emailAddress: this.userEmail,
         };
         console.log('Goal Register Form:', reqGoalData);
         const res = await this.goalService.postGoalData(
           reqGoalData
         );
         console.log('Server response:', res);
+        Swal.fire({
+          title: 'Success!',
+          text: 'You successful created a new goal!',
+          icon: 'success',
+          confirmButtonText: 'OK'
+        });
         goalForm.resetForm();
       } catch (err) {
         console.error('Error:', err);
-        this.errMsg = 'Unable to register your goal!';
+        Swal.fire({
+          title: 'Success!',
+          text: 'Unable to create a new goal!',
+          icon: 'error',
+          confirmButtonText: 'OK'
+        });
       }
     }
   }
@@ -130,7 +140,7 @@ export class GoalComponent {
       }
     } catch (error) {
       console.error('Error loading user goalByGoalId in goal page:', error);
-      this.errMsg = 'Error! Unable to fetch user goal!';
+      notyf.error('Failed to load your selected goal!');
     }
   }
 
@@ -149,14 +159,11 @@ export class GoalComponent {
         );
         console.log('Server response on update route at goal page:', res);
         this.router.navigate(['/home']);
+        notyf.success('Successfully updated your goal!');
       } catch (err) {
         console.error('Error:', err);
-        this.errMsg = 'Unable to update your goal!';
+        notyf.error('Failed to update your goal!');
       }
     }
-  }
-
-  emptyErrMsg() {
-    this.errMsg = '';
   }
 }

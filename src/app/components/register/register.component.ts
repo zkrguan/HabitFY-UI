@@ -5,14 +5,14 @@ import { Register } from 'src/app/interfaces/register';
 import { AuthService } from 'src/app/services/auth.service';
 import { RegisterProfileService } from 'src/app/services/register-profile.service';
 import { Auth } from 'aws-amplify';
-
+import { Notyf } from 'notyf';
+const notyf = new Notyf();
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
-  errMsg: string = '';
   userId: string = '';
   userEmail:string='';
 
@@ -63,9 +63,10 @@ export class RegisterComponent {
       // after registering user profile, updating AWS custom attribute
       await this.updateUserFirstLoginStatus();
       this.router.navigate(['/home']);
+      notyf.success('Successfully registered your profile!');
     } catch (err) {
       console.error('Error:', err);
-      this.errMsg = 'Unable to register your profile!';
+      notyf.error('Failed to register your profile!');
     }
   }
 
@@ -85,9 +86,10 @@ export class RegisterComponent {
       );
       console.log('Server response on update route:', res);
       this.router.navigate(['/home']);
+      notyf.success('Successfully updated your profile!');
     } catch (err) {
       console.error('Error:', err);
-      this.errMsg = 'Unable to update your profile!';
+      notyf.error('Failed to update your profile!');
     }
   }
 
@@ -112,7 +114,7 @@ export class RegisterComponent {
       }
     } catch (error) {
       console.error('Error loading user data:', error);
-      // this.errMsg = 'Error! Unable to fetch user data!';
+      notyf.error('Failed to load your profile information!');
     }
   }
 
@@ -135,9 +137,10 @@ export class RegisterComponent {
         // after registering user profile, updating AWS custom attribute
         await this.updateUserFirstLoginStatus();
         this.router.navigate(['/home']);
+        notyf.success('Successfully registered your profile!');
       } catch (err) {
         console.error('Error:', err);
-        this.errMsg = 'Unable to register your profile!';
+        notyf.error('Failed to register your profile!');
       }
     }
   }
@@ -158,9 +161,10 @@ export class RegisterComponent {
         );
         console.log('Server response on update route:', res);
         this.router.navigate(['/home']);
+        notyf.success('Successfully updated your profile!');
       } catch (err) {
         console.error('Error:', err);
-        this.errMsg = 'Unable to update your profile!';
+        notyf.error('Failed to update your profile!');
       }
     }
   }
@@ -176,9 +180,5 @@ export class RegisterComponent {
     } catch (error) {
       console.error('Error updating user attributes:', error);
     }
-  }
-
-  emptyErrMsg() {
-    this.errMsg = '';
   }
 }

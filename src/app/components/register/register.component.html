@@ -31,7 +31,6 @@
             required
             pattern="[a-zA-Z ]*"
             #msgRef2="ngModel"
-            (focus)="emptyErrMsg()"
             [(ngModel)]="registerData.province"
           />
           <small [class.hide]="!(msgRef2.touched && msgRef2.invalid)"
@@ -48,7 +47,6 @@
             required
             pattern="[A-Za-z ]*"
             #msgRef1="ngModel"
-            (focus)="emptyErrMsg()"
             [(ngModel)]="registerData.city"
           />
           <small [class.hide]="!(msgRef1.touched && msgRef1.invalid)"
@@ -65,7 +63,6 @@
             required
             #msgRef3="ngModel"
             pattern="[A-Za-z][0-9][A-Za-z] [0-9][A-Za-z][0-9]"
-            (focus)="emptyErrMsg()"
             [(ngModel)]="registerData.postalCode"
           />
           <small [class.hide]="!(msgRef3.touched && msgRef3.invalid)"
@@ -83,7 +80,6 @@
             min="1"
             max="100"
             #msgRef4="ngModel"
-            (focus)="emptyErrMsg()"
             [(ngModel)]="registerData.age"
           />
           <small [class.hide]="!(msgRef4.touched && msgRef4.invalid)"
@@ -100,17 +96,13 @@
               [name]="gender.name"
               [id]="gender.id"
               [value]="gender.value"
-              required
-              (focus)="emptyErrMsg()"
+              required            
               [(ngModel)]="registerData.sex"
             />
             <label for="gender.id">{{ gender.value }}</label>
           </div>
         </div>
       </div></div>
-      <div *ngIf="errMsg" class="text-center">
-        {{ errMsg }}
-      </div>
       <div class="registerButton d-flex justify-content-center" *ngIf="isFirstTimeRegistering">
         <input type="submit" class="btn btn-light" value="Create" [disabled]="!registerForm.form.valid" />
       </div>
