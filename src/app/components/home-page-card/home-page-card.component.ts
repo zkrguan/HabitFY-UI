@@ -222,6 +222,7 @@ export class HomePageCardComponent implements AfterViewChecked {
         });
         // after registering new progress record, resetting the input box
         progressRecordForm.resetForm();
+       await this.basedOnSelectedDate();
       } catch (err) {
         // handling any thrown error here
         console.error('Error:', err);

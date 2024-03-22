@@ -99,7 +99,7 @@ export class GoalComponent {
           icon: 'success',
           confirmButtonText: 'OK'
         });
-        goalForm.resetForm();
+        goalForm.resetForm(this.goalData);
       } catch (err) {
         console.error('Error:', err);
         Swal.fire({
