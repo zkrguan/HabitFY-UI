@@ -7,7 +7,6 @@ import {
 import { Auth } from 'aws-amplify';
 import { environment } from '../../environments/environment';
 import { ProgressRecord } from '../interfaces/progress-record';
-// import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,14 +16,14 @@ export class ProgressRecordService {
   constructor(private http: HttpClient) { }
 
    // get progress record by goal id
-   async getProgressRecordByGoalId(id: Number): Promise<ProgressRecord[] | null | undefined> {
+   async getProgressRecordByGoalId(id: string|null, selectedDate:string): Promise<ProgressRecord[] | null | undefined> {
     try {
       const session = await Auth.currentSession();
       const accessToken = session.getAccessToken().getJwtToken();
       const headers = new HttpHeaders({
         Authorization: `Bearer ${accessToken}`,
       });
-      const url = `${environment.url}/api/v1/ProgressRecord/byGoalId/${id}`;
+      const url = `${environment.url}/api/v1/ProgressRecord/byGoalId/${id}/${selectedDate}`;
       // mapping with <progress-record> interface for invoking get request
       return await this.http.get<ProgressRecord[]>(url, { headers }).toPromise();
     } catch (err) {

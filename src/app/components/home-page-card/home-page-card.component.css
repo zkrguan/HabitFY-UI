@@ -1,9 +1,11 @@
+/* styling for the main card container */
 .mainCard {
-    margin-top: 20px;
+    margin-top: 10px;
     background-color: rgba(255, 255, 255, 0.2);
     border-radius: 2%;
 }
 
+/* styling for the card header */
 .card-header {
     font-size: 20px;
     color: white;
@@ -11,6 +13,7 @@
     font-family: 'Chakra Petch', sans-serif;
 }
 
+/* styling for individual cards within the main card */
 .innerCard {
     border-radius: 0 !important;
     font-size: 17px;
@@ -21,25 +24,30 @@
     cursor: pointer;
 }
 
+/* hover effect for inner cards */
 .innerCard:hover {
     transform: scale(1.05);
     transition: transform 0.3s;
 }
 
+/* additional styling for text inside inner cards */
 .innerCard .card-text {
     padding-left: 10px;
 }
 
+/* styling for selected cards */
 .selected {
     background-color: rgba(155, 155, 166, 0.5);
     color: #effbef;
 }
 
+/* styling for images, such as checkmarks */
 img {
     margin-left: 3px;
     width: 15px;
 }
 
+/* styling for the form body container */
 .formBody {
     display: flex;
     flex-wrap: wrap;
@@ -47,12 +55,14 @@ img {
     padding: 10px 8px;
     color: white;
     margin-bottom: 0px;
-  }
-  
-  .inputBox:nth-child(2n) {
-    justify-content: end;
-  }
+}
 
+/* styling for every second input box */
+.inputBox:nth-child(2n) {
+    justify-content: end;
+}
+
+/* styling for input boxes */
 .inputBox {
     display: flex;
     flex-wrap: wrap;
@@ -60,27 +70,33 @@ img {
     padding-top: 5px;
     padding-bottom: 5px;
     margin-bottom: -10px;
-    border-top: 1px solid rgba(243, 234, 234, 0.5);;
-    border-bottom: 1px solid rgba(243, 234, 234, 0.5);;
-  }
-  
-.inputBox label{
+    margin-top: -15px;
+    border-top: 1px solid rgba(243, 234, 234, 0.5);
+    border-bottom: 1px solid rgba(243, 234, 234, 0.5);
+}
+
+/* styling for labels within input boxes */
+.inputBox label {
     font-size: 15px;
     margin-bottom: 2px;
 }
 
-  .inputBox input {
+/* styling for inputs */
+.inputBox input {
     height: 31px;
-  }
+}
 
-  small {
+/* styling for small elements, typically used for form validation messages */
+small {
     color: rgb(189, 7, 7);
-  }
+}
 
-  input.ng-touched.ng-invalid {
+/* specific styling for invalid inputs */
+input.ng-touched.ng-invalid {
     border: 1.5px solid red;
-  }
+}
 
+/* styling for buttons */
 .myButton {
     font-family: 'Chakra Petch', sans-serif;
     padding: 5px 10px;
@@ -90,7 +106,8 @@ img {
     background-color: #53c733b3;
 }
 
-.goalDetails{
+/* styling for the goal details list */
+.goalDetails {
     list-style: none;
     margin-left: 0px;
     padding-left: 10px;
@@ -98,40 +115,69 @@ img {
     text-align: center;
 }
 
-.goalMessage{
+/* styling for goal message text */
+.goalMessage {
     font-size: 16px;
     color: #53c733b3;
     text-shadow:
-    0 0 1px #53c733b3,
-      0 0 5px #53c733b3,
-      0 0 14px #53c733b3,
-      0 0 38px #fff,
-      0 0 99px #fff,
-      0 0 87px #fff,
-      0 0 100px #fff;
-      margin-top: 50px;
+        0 0 1px #53c733b3,
+        0 0 5px #53c733b3,
+        0 0 14px #53c733b3,
+        0 0 38px #fff,
+        0 0 99px #fff,
+        0 0 87px #fff,
+        0 0 100px #fff;
+    margin-top: 50px;
 }
 
-ul li{
+/* style for list items, adjusting font size for readability */
+ul li {
     font-size: 15px;
 }
 
-span{
+/* makes text within <span> tags bold for emphasis */
+span {
     font-weight: bold;
 }
 
-form{
+/* adds a top margin to <form> elements for spacing */
+form {
     margin-top: 10px;
 }
 
-.loggedPTag{
+.loggedPTag {
     font-size: 15px;
 }
 
-.hide{
+/* hides elements with the 'hide' class by setting their visibility to hidden */
+.hide {
     visibility: hidden;
 }
 
+/* styles elements for scrolling progress records, setting a maximum height and enabling vertical scrolling */
+.forScrollingProgressRecord {
+    max-height: 75px;
+    overflow-y: auto;
+}
+
+/* styles for date input fields, setting background, border, and padding for a more custom appearance */
+input[type="date"] {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    border: 1px solid black;
+    padding: 5px 10px;
+}
+
+/* adds a hover effect to date inputs, enlarging them slightly for interactivity */
+input[type="date"]:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s;
+}
+
+/* Media query for devices with a max width of 768px (tablets and mobile devices) */
 @media screen and (max-width: 768px) {
     .innerCard {
         font-size: 17px;
@@ -142,7 +188,7 @@ form{
         font-size: 15px;
     }
 
-    .goalNotSelectedMessage{
+    .goalNotSelectedMessage {
         margin-top: 15px;
     }
 }

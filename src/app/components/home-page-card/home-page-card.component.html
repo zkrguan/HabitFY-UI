@@ -1,16 +1,26 @@
+<!-- date selection input wrapped in a flexbox container for center alignment -->
+<div class="d-flex justify-content-center">
+  <input type="date" id="selectedDate" name="selectedDate" [(ngModel)]="selectedDate"
+    (change)="basedOnSelectedDate()" [max]="upToDateSelection"/>
+</div>
+<!-- main container for the goals and progress records sections -->
 <div class="container">
   <div class="row">
+    <!-- column for displaying user goals -->
     <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center align-items-center">
+      <!-- conditionally display goals if found, otherwise show a message prompting goal creation -->
       <ng-container *ngIf="isGoalFound; else goalDataNotAvailable">
+        <!-- card displaying user goals -->
         <div class="mainCard card" style="width: 25rem; padding-bottom: 20px;">
           <div class="card-header text-center">
             Your Goals
           </div>
-
+          <!-- iterate over each goal and display it -->
           <div *ngFor="let goal of goalData" [class.selected]="goal.id === goalSelected" (click)="onGoalSelection(goal)"
             class="innerCard card mx-auto" style="width: 24rem;">
             <div class="d-flex align-items-center">
               <p class="card-text m-0">{{ goal.description }}</p>
+              <!-- display a checkmark for the selected goal -->
               <ng-container *ngIf="goal.id === goalSelected">
                 <img src="assets/images/checked.png" class="ml-2">
               </ng-container>
@@ -23,14 +33,15 @@
       </ng-template>
     </div>
 
-
+    <!-- column for displaying selected goal details -->
     <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center align-items-center">
-      <section class="goalDetailsMainSection" *ngIf="goalSelected; else goalNotSelected">
+      <!-- conditionally display selected goal details or a message if no goal is selected -->
+      <section *ngIf="goalSelected; else goalNotSelected">
+        <!-- card displaying selected goal details -->
         <div class="mainCard card" style="width: 25rem; padding-bottom: 10px;">
           <div class="card-header text-center">
             Selected Goal Details
           </div>
-
           <ul class="goalDetails">
             <div class="innerCard">
               <li><span>Start Date: {{goalDataById.startDate | date}}</span></li>
@@ -63,6 +74,7 @@
             </div>
           </ng-template>
           <div class="d-flex justify-content-center">
+            <!-- Conditional buttons based on the goal's activation status -->
             <ng-container *ngIf="goalDataById.isActivated; else notActivatedBtn">
               <button class="myButton btn" (click)="activateOrDeactivate()">Deactivate</button></ng-container>
             <ng-template #notActivatedBtn><button class="myButton btn"
@@ -75,28 +87,32 @@
         <div class="goalMessage">Select your goal if created to see its details.</div>
       </ng-template>
     </div>
-
+    <!-- column for logging and displaying progress records for the selected goal -->
     <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center align-items-center">
-      <section class="goalDetailsMainSection" *ngIf="goalSelected; else goalNotSelected_1">
-        <!-- <section *ngIf="progressRecordByGoalId.notes; else noProgressRecord">
-          Test progressRecordByGoalId
-        </section>
-        <ng-template #noProgressRecord>
-          <div class="goalMessage">Your progress report has not been updated.</div>
-        </ng-template> -->
-
+      <!-- conditionally display progress records section or a message if no goal is selected -->
+      <section *ngIf="goalSelected; else goalNotSelected_1">
         <div class="mainCard card" style="width: 25rem; padding-bottom: 10px;">
           <div class="card-header text-center">
-            Log Activity
+            Logged Activities
           </div>
-          <div *ngFor="let pr of receivedProgressRecord" class="innerCard card mx-auto" style="width: 24rem;">
-            <div class="text-center">
-              <p class="card-text m-0 loggedPTag"><span>Note:</span> {{ pr.notes }}</p>
-              <p class="card-text m-0 loggedPTag"><span>Completed Value:</span> {{ pr.completedValue }}</p>
-              <!-- <p class="card-text m-0">{{ pr.createdTime }}</p> -->
+          <div #simplebarForScroll [class.forScrollingProgressRecord]="receivedProgressRecord.length > 2"
+            *ngIf="receivedProgressRecord.length">
+            <div *ngFor="let pr of receivedProgressRecord" class="innerCard card mx-auto" style="width: 24rem;">
+              <div class="text-center">
+                <p class="card-text m-0 loggedPTag"><span>Note:</span> {{ pr.notes }}</p>
+                <p class="card-text m-0 loggedPTag"><span>Completed Value:</span> {{ pr.completedValue }}
+                  {{goalDataById.unit}}</p>
+              </div>
             </div>
           </div>
-          <!-- <div class="card-header text-center">Log Activity</div> -->
+          <ng-container *ngIf="!receivedProgressRecord?.length">
+            <div class="innerCard card mx-auto" style="width: 24rem;">
+              <div class="text-center">
+                <p class="card-text m-0 loggedPTag"><span>Note:</span> Unavailable</p>
+                <p class="card-text m-0 loggedPTag"><span>Completed Value:</span> Unavailable</p>
+              </div>
+            </div>
+          </ng-container>
           <form #progressRecordForm="ngForm" (ngSubmit)="onProgressRecordRegister(progressRecordForm)">
             <div class="formBody">
               <div class="inputBox">
@@ -108,7 +124,7 @@
               <div class="inputBox">
                 <label for="completedValue">Completed goal value</label>
                 <input type="number" id="completedValue" name="completedValue" required #msgRef2="ngModel"
-                   [(ngModel)]="progressRecordByGoalId.completedValue" />
+                  [(ngModel)]="progressRecordByGoalId.completedValue" />
                 <small [class.hide]="!(msgRef2.touched && msgRef2.invalid)">Log today's goal value</small>
               </div>
             </div>

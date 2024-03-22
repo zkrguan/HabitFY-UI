@@ -7,14 +7,13 @@ import {
 import { Auth } from 'aws-amplify';
 import { environment } from '../../environments/environment';
 import { Register } from '../interfaces/register';
-import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RegisterProfileService {
   // private isRegistered: boolean | undefined;
-  constructor(private http: HttpClient, private authService: AuthService) {}
+  constructor(private http: HttpClient) {}
 
   // included access token in the headers
   // may not require based on implementation of these routes in backend

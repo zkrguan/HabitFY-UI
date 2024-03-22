@@ -6,14 +6,13 @@ import {
 } from '@angular/common/http';
 import { Auth } from 'aws-amplify';
 import { environment } from '../../environments/environment';
-import { AuthService } from './auth.service';
 import { Goal } from '../interfaces/goal';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GoalService {
-  constructor(private http: HttpClient, private authService: AuthService) {}
+  constructor(private http: HttpClient) { }
 
   // post request for registering profile
   async postGoalData(goalData: any) {
@@ -85,7 +84,7 @@ export class GoalService {
   }
 
   // to activate or deactivate goal state
-  async activateOrDeactivateGoal(isActivationTrue: boolean, id:number){
+  async activateOrDeactivateGoal(isActivationTrue: boolean, id: number) {
     try {
       const session = await Auth.currentSession();
       const accessToken = session.getAccessToken().getJwtToken();
@@ -95,7 +94,7 @@ export class GoalService {
       });
       const url = `${environment.url}/api/v1/Goal/${id}/${isActivationTrue}`;
       const res = this.http
-        .patch(url, {} ,{ headers, responseType: 'text' })
+        .patch(url, {}, { headers, responseType: 'text' })
         .toPromise();
       return res;
     } catch (err) {
@@ -104,24 +103,24 @@ export class GoalService {
     }
   }
 
-    // put request for updating goal
-    async updateGoalData(updateData: any, id:Number) {
-      try {
-        const session = await Auth.currentSession();
-        const accessToken = session.getAccessToken().getJwtToken();
-        const headers = new HttpHeaders({
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${accessToken}`,
-        });
-        const url = `${environment.url}/api/v1/Goal/${id}`;
-        console.log('Update URL:', url, '| Goal Data:', updateData);
-        const res = await this.http
-          .put(url, updateData, { headers, responseType: 'text' })
-          .toPromise();
-        return res;
-      } catch (err) {
-        console.error('Unable to update user goal:', err);
-        throw new Error('Unable to update user goal!');
-      }
+  // put request for updating goal
+  async updateGoalData(updateData: any, id: Number) {
+    try {
+      const session = await Auth.currentSession();
+      const accessToken = session.getAccessToken().getJwtToken();
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${accessToken}`,
+      });
+      const url = `${environment.url}/api/v1/Goal/${id}`;
+      console.log('Update URL:', url, '| Goal Data:', updateData);
+      const res = await this.http
+        .put(url, updateData, { headers, responseType: 'text' })
+        .toPromise();
+      return res;
+    } catch (err) {
+      console.error('Unable to update user goal:', err);
+      throw new Error('Unable to update user goal!');
     }
+  }
 }
