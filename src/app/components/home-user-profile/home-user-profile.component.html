@@ -5,14 +5,41 @@
         <div class="col-md-4 col-12 mb-2 mb-md-0 imgNameBar">
           <div class="imageAndName d-flex">
             <div class="avatar">
-              <img class="rounded-circle" src='assets/images/maleAvatar.png' alt="image not found" />
+              <ng-container *ngIf="registerData.sex === 'Male'">
+                <img class="rounded-circle" src='assets/images/maleAvatar.png' alt="image not found" />
+              </ng-container>
+              <ng-container *ngIf="registerData.sex === 'Female'">
+                <img class="rounded-circle" src='assets/images/femaleAvatar.png' alt="image not found" />
+              </ng-container>
             </div>
             <div>
-              <p class="card-title">John Doe</p>
-              <p class="card-subtitle mb-2 text-muted">Dream Caster</p>
+              <p class="card-title">{{userId}}</p>
+              <ng-container *ngIf="(userDailyStatistics.data?.reachedGoalStreak ?? 0) <= 25">
+                <p class="card-subtitle mb-2 text-muted"
+                  matTooltip="Your rank is determined by your goal streak: 'Dreamer' for streaks below 26, 'King's Guard' for 26-50, 'Gladiator' for 51-300, and 'Terminator' for streaks over 300.">
+                  {{ ranks[0].name }}</p>
+              </ng-container>
+              <ng-container
+                *ngIf="(userDailyStatistics.data?.reachedGoalStreak ?? 0) >= 26 && (userDailyStatistics.data?.reachedGoalStreak ?? 0) <= 50">
+                <p class="card-subtitle mb-2 text-muted"
+                  matTooltip="Your rank is determined by your goal streak: 'Dreamer' for streaks below 26, 'King's Guard' for 26-50, 'Gladiator' for 51-300, and 'Terminator' for streaks over 300.">
+                  {{ ranks[1].name }}</p>
+              </ng-container>
+              <ng-container
+                *ngIf="(userDailyStatistics.data?.reachedGoalStreak ?? 0) >= 51 && (userDailyStatistics.data?.reachedGoalStreak ?? 0) <= 300">
+                <p class="card-subtitle mb-2 text-muted"
+                  matTooltip="Your rank is determined by your goal streak: 'Dreamer' for streaks below 26, 'King's Guard' for 26-50, 'Gladiator' for 51-300, and 'Terminator' for streaks over 300.">
+                  {{ ranks[2].name }}</p>
+              </ng-container>
+              <ng-container *ngIf="(userDailyStatistics.data?.reachedGoalStreak ?? 0) >= 301">
+                <p class="card-subtitle mb-2 text-muted"
+                  matTooltip="Your rank is determined by your goal streak: 'Dreamer' for streaks below 26, 'King's Guard' for 26-50, 'Gladiator' for 51-300, and 'Terminator' for streaks over 300.">
+                  {{ ranks[3].name }}</p>
+              </ng-container>
+              <p class="mb-2 text-muted" style="margin-top: -10px; font-size: 13px;">Goal Streak:
+                {{userDailyStatistics.data.reachedGoalStreak}}</p>
             </div>
           </div>
-
           <div *ngFor="let p of progress" class="progress-container">
             <p class="progress-name">{{ p.name }}</p>
             <div class="progress-wrapper">
@@ -25,15 +52,20 @@
             </div>
           </div>
         </div>
-        <div class="myMainGoals col-md-4 col-12 mb-2 mb-md-0 d-flex align-items-center">
-          <ul class="list-group w-100 no-border">
-            <li class="goalsTitle list-group-item text-center pt-2">My Main Goals</li>
-            <ng-container *ngFor="let g of mainGoals">
-              <li class="sub-list list-group-item list-group-item text-center no-border subGoals">{{ g.goal }}</li>
-            </ng-container>
-            <li *ngIf="mainGoals.length === 0" class="sub-list list-group-item text-center no-border">No goals available
-            </li>
-          </ul>
+        <div class="myStats col-md-4 col-12 mb-2 mb-md-0">
+          <p class="statsTitle list-group-item text-center pt-2" style="margin-bottom: 15px;">Stats based on your area
+          </p>
+          <div *ngFor="let p of progress_2" class="progress-container_2">
+            <p class="progress-name">{{ p.name }}</p>
+            <div class="progress-wrapper">
+              <div class="progress" matTooltip="{{p.info}}">
+                <div class="progress-bar"
+                  [ngStyle]="{'width': p.load ? p.percentage + '%' : '0', 'background-color': p.color}">
+                </div>
+              </div>
+              <p class="percentage-value">{{ p.load ? p.percentage + '%' : '' }}</p>
+            </div>
+          </div>
         </div>
         <div class="col-md-4 col-12 mb-2 mb-md-0">
           <div class="row h-100">

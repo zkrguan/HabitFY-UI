@@ -12,6 +12,8 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
 import { RegisterComponent } from './components/register/register.component';
 import { AboutPageComponent } from './components/about-page/about-page.component';
 import { GoalComponent } from './components/goal/goal.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { GoalComponent } from './components/goal/goal.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    MatTooltipModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

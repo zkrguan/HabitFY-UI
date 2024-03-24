@@ -35,6 +35,10 @@
   padding: 0;
 }
 
+.progress-container_2{
+  margin-left: 88px;
+}
+
 .card-title {
   font-size: 20px;
   color: black;
@@ -93,14 +97,14 @@
   transition: transform 0.3s;
 }
 
-.goalsTitle {
+.statsTitle {
   font-family: 'Chakra Petch', sans-serif;
   font-size: 22px;
   color: black;
   font-weight: 600;
 }
 
-.goalsTitle,
+.statsTitle,
 .sub-list {
   background-color: rgb(255, 255, 255, 0);
 }
@@ -157,7 +161,7 @@
 
 @media (max-width: 768px) {
   .card-title,
-  .goalsTitle,
+  .statsTitle,
   .displayedQuote {
     font-size: 19px;
   }
@@ -175,6 +179,7 @@
   .progress-name{
     margin-top: 5px;
     margin-bottom: 7px;
+    margin-right: 90px;
   }
 
   .quotes {
@@ -194,8 +199,12 @@
   }
 
   .imgNameBar,
-  .myMainGoals {
+  .myStats {
     padding-bottom: 20px;
     border-bottom: 1px solid white;
+  }
+
+  .progress-container{
+    margin-left: 88px;
   }
 }
