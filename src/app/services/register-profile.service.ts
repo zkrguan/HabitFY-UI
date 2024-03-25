@@ -22,26 +22,31 @@ export class RegisterProfileService {
     try {
       const session = await Auth.currentSession();
       const accessToken = session.getAccessToken().getJwtToken();
+      // setting up headers to invoke POST route to register user profile data
       const headers = new HttpHeaders({
         'Content-Type': 'application/json',
         Authorization: `Bearer ${accessToken}`,
       });
-      const url = `${environment.url}/api/v1/UserProfile`;
+      const url = `${environment.url}/api/v1/UserProfile`; // setting up URL
       console.log(url + ' | ' + registerData + ' | ' + headers);
+      // requesting POST request based on the built URL, registration data, and headers
+      // also, stating that the response data from this route will be in text/plain format
       const res = this.http
         .post(url, registerData, { headers, responseType: 'text' })
         .toPromise();
-      return res;
-    } catch (err) {
+      return res; // returning the responded data
+    } catch (err) { // catches error while performing POST request in this function
       console.error(
         'Unable to register user profile for analytical report',
         err
       );
+      // throwing error if code goes to this catch block
       throw new Error('Unable to register user!');
     }
   }
 
   // put request for updating profile
+  // logic is similar to the registering user profile
   async updateRegisterData(updateData: any) {
     try {
       const session = await Auth.currentSession();
@@ -71,11 +76,14 @@ export class RegisterProfileService {
         Authorization: `Bearer ${accessToken}`,
       });
       const url = `${environment.url}/api/v1/UserProfile/${id}`;
-      // mapping with <Register> interface to invoking get request
+      // mapping with <Register> interface, and using built headers to invoke get request
       // Register interface contains JSON object similar to get route's response data
+      // this means we are expecting data similar to the Register interface's data structure
       return await this.http.get<Register>(url, { headers }).toPromise();
     } catch (err) {
       if (err instanceof HttpErrorResponse) {
+        // 404 status code tells us that data was not found
+        // return null if no data is found from the GET route
         if (err.status === 404) {
           return null;
         }

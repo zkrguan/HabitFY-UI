@@ -1,19 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DataService {
-  // TODO get from api just a test
-
-  // TODO get from api just a test
-  mainGoals = [
-    { goal: 'Read 50 books.', color: '#FFC9CD' },
-    { goal: 'Drink 8 glass of water everyday.', color: '#D6FFCC' },
-    { goal: 'Workout 1 hour everyday.', color: '#C7D0FF' },
-  ];
-
+  // initializing motivational quotes
   quotes = [
     {
       quote:
@@ -83,36 +74,10 @@ export class DataService {
     },
   ];
 
-  // TODO get from api just a test
-  habits = [
-    'Some quick example text to build on the card.',
-    'Some quick example text to build on the card.',
-    'Some quick example text to build on the card.',
-  ].map((habit) => ({ value: habit, selected: false }));
+  constructor() { }
 
-  // TODO get from api just a test
-  dailies = [
-    'Some quick example text to build on the card.',
-    'Some quick example text to build on the card.',
-    'Some quick example text to build on the card.',
-  ].map((daily) => ({ value: daily, selected: false }));
-
-  // TODO fetching data from backend
-  constructor(private http: HttpClient) {}
-
+  // return initialized motivational quotes
   getQuotes() {
     return this.quotes;
-  }
-
-  getMainGoals() {
-    return this.mainGoals;
-  }
-
-  getHabits() {
-    return this.habits;
-  }
-
-  getDailies() {
-    return this.dailies;
   }
 }
