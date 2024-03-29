@@ -79,7 +79,7 @@ export class GoalComponent {
   minEndDateBasedOnStartDate() {
     if (this.goalData.startDate) {
       const startDate = new Date(this.goalData.startDate);
-      // above code gives yesterday date at certain times due to time zone difference 
+      // above code gives yesterday date
       // making end date selection to be 1 day after the start date 
       this.minEndDate = this.splitToIncludeDateOnly(new Date(startDate.setDate(startDate.getDate() + 1)));
       // if user selects end date to be less than tomorrow's date then, resetting the end date value
