@@ -21,7 +21,7 @@ export class HomeUserProfileComponent {
     data: {
       planedToFinishGoalCount: null,
       actualFinishedGoalCount: null,
-      reachedGoalStreak: null,
+      reachedGoalStreak: 0,
       beatingCompetitorPercentage: null,
       totalUserCountInPostalCode: null,
       samePerformanceUsersCount: null,

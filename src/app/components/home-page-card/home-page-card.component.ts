@@ -1,4 +1,4 @@
-import { Component, AfterViewChecked, ElementRef, ViewChild } from '@angular/core';
+import { Component, AfterViewChecked, ElementRef, ViewChild} from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Goal } from 'src/app/interfaces/goal';
@@ -36,7 +36,8 @@ export class HomePageCardComponent implements AfterViewChecked {
 
   progressRecordByGoalId: ProgressRecord = {
     notes: null,
-    completedValue: null
+    completedValue: null,
+    createdTime: null
   };
 
   selectedDate: string = '';
@@ -52,7 +53,7 @@ export class HomePageCardComponent implements AfterViewChecked {
     await this.loadUserGoals();
     // logic to get current date
     const currentDate = new Date();
-    this.selectedDate = currentDate.toISOString().substring(0, 10);
+    this.selectedDate = this.splitToIncludeDateOnly(currentDate);
     this.upToDateSelection = this.selectedDate;
     // end of logic to get current date
     console.log("on init date value: ", this.selectedDate);
@@ -124,6 +125,7 @@ export class HomePageCardComponent implements AfterViewChecked {
       } else {
         // updating the component state based on received user goal from the route
         this.goalDataById = userGoal;
+        this.isSimpleBarInitialized = false; // helps to initialize simple bar again after switching the goal selection
         console.log(
           'User goal after getting from getById route:',
           this.goalDataById
@@ -254,11 +256,26 @@ export class HomePageCardComponent implements AfterViewChecked {
       } else {
         // assign the received progress record to  this.receivedProgressRecord.
         this.receivedProgressRecord = progressRecord;
+        this.isSimpleBarInitialized = false; // helps to initialize simple bar again after fetching progress record based on date
         console.log('Progress record after getting from byGoalId route:', this.receivedProgressRecord);
       }
     } catch (error) {
       console.error('Error fetching progress records:', error);
       notyf.error('An error occurred while fetching progress records.');
     }
+  }
+
+  // only get date by excluding time
+  // also helps to match the user location's date after splitting
+  splitToIncludeDateOnly(date: Date): string {
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+  
+    // adds leading 0 to make date format in YYYY-MM-DD
+    const paddedMonth = month.toString().padStart(2, '0');
+    const paddedDay = day.toString().padStart(2, '0');
+  
+    return `${year}-${paddedMonth}-${paddedDay}`;
   }
 }

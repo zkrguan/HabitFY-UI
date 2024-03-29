@@ -1,11 +1,9 @@
-/* styling for the main card container */
 .mainCard {
     margin-top: 10px;
     background-color: rgba(255, 255, 255, 0.2);
     border-radius: 2%;
 }
 
-/* styling for the card header */
 .card-header {
     font-size: 20px;
     color: white;
@@ -13,7 +11,6 @@
     font-family: 'Chakra Petch', sans-serif;
 }
 
-/* styling for individual cards within the main card */
 .innerCard {
     border-radius: 0 !important;
     font-size: 17px;
@@ -24,30 +21,25 @@
     cursor: pointer;
 }
 
-/* hover effect for inner cards */
 .innerCard:hover {
     transform: scale(1.05);
     transition: transform 0.3s;
 }
 
-/* additional styling for text inside inner cards */
 .innerCard .card-text {
     padding-left: 10px;
 }
 
-/* styling for selected cards */
 .selected {
     background-color: rgba(155, 155, 166, 0.5);
     color: #effbef;
 }
 
-/* styling for images, such as checkmarks */
 img {
     margin-left: 3px;
     width: 15px;
 }
 
-/* styling for the form body container */
 .formBody {
     display: flex;
     flex-wrap: wrap;
@@ -57,12 +49,10 @@ img {
     margin-bottom: 0px;
 }
 
-/* styling for every second input box */
 .inputBox:nth-child(2n) {
     justify-content: end;
 }
 
-/* styling for input boxes */
 .inputBox {
     display: flex;
     flex-wrap: wrap;
@@ -75,28 +65,23 @@ img {
     border-bottom: 1px solid rgba(243, 234, 234, 0.5);
 }
 
-/* styling for labels within input boxes */
 .inputBox label {
     font-size: 15px;
     margin-bottom: 2px;
 }
 
-/* styling for inputs */
 .inputBox input {
     height: 31px;
 }
 
-/* styling for small elements, typically used for form validation messages */
 small {
     color: rgb(189, 7, 7);
 }
 
-/* specific styling for invalid inputs */
 input.ng-touched.ng-invalid {
     border: 1.5px solid red;
 }
 
-/* styling for buttons */
 .myButton {
     font-family: 'Chakra Petch', sans-serif;
     padding: 5px 10px;
@@ -106,7 +91,6 @@ input.ng-touched.ng-invalid {
     background-color: #53c733b3;
 }
 
-/* styling for the goal details list */
 .goalDetails {
     list-style: none;
     margin-left: 0px;
@@ -115,7 +99,6 @@ input.ng-touched.ng-invalid {
     text-align: center;
 }
 
-/* styling for goal message text */
 .goalMessage {
     font-size: 16px;
     color: #53c733b3;
@@ -130,17 +113,14 @@ input.ng-touched.ng-invalid {
     margin-top: 50px;
 }
 
-/* style for list items, adjusting font size for readability */
 ul li {
     font-size: 15px;
 }
 
-/* makes text within <span> tags bold for emphasis */
 span {
     font-weight: bold;
 }
 
-/* adds a top margin to <form> elements for spacing */
 form {
     margin-top: 10px;
 }
@@ -149,35 +129,45 @@ form {
     font-size: 15px;
 }
 
-/* hides elements with the 'hide' class by setting their visibility to hidden */
 .hide {
     visibility: hidden;
 }
 
-/* styles elements for scrolling progress records, setting a maximum height and enabling vertical scrolling */
 .forScrollingProgressRecord {
-    max-height: 75px;
+    max-height: 120px;
     overflow-y: auto;
 }
 
-/* styles for date input fields, setting background, border, and padding for a more custom appearance */
-input[type="date"] {
-    background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 5px;
-    font-size: 16px;
-    margin-top: 10px;
-    margin-bottom: 0px;
-    border: 1px solid black;
-    padding: 5px 10px;
+.date-picker-container input[type="date"] {
+    position: relative;
+    width: 32px; 
+    height: 32px; 
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    color: transparent; 
+    overflow: hidden;
+    -webkit-appearance: none;
 }
 
-/* adds a hover effect to date inputs, enlarging them slightly for interactivity */
-input[type="date"]:hover {
-    transform: scale(1.05);
-    transition: transform 0.3s;
+.date-picker-container input[type="date"]:focus {
+    outline: none;
+    border: none; 
+    box-shadow: none; 
 }
 
-/* Media query for devices with a max width of 768px (tablets and mobile devices) */
+.date-picker-container input[type="date"]:focus::-webkit-datetime-edit-year-field,
+.date-picker-container input[type="date"]:focus::-webkit-datetime-edit-month-field,
+.date-picker-container input[type="date"]:focus::-webkit-datetime-edit-day-field,
+.date-picker-container input[type="date"]:focus::-webkit-datetime-edit-fields-wrapper {
+    display: none; 
+}
+
+.date-picker-container input[type="date"]:focus::-ms-clear,
+.date-picker-container input[type="date"]:focus::-ms-reveal {
+    display: none;
+}
+
 @media screen and (max-width: 768px) {
     .innerCard {
         font-size: 17px;

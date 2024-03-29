@@ -11,9 +11,16 @@ import { AuthService } from '../services/auth.service';
 // check app-routing where registration guard has been implemented for the home page
 export class RegistrationGuard implements CanActivate {
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) { }
 
   async canActivate(): Promise<boolean> {
+    // checking if user is authenticated or not
+    const isAuthenticated = await this.authService.userAuthenticationVerification();
+    if (!isAuthenticated) {
+      this.router.navigate(['/login']);
+      return false;
+    }
+    // now checking if user has created register profile or not
     const isRegistered = await this.authService.getUserParametersFromCognito();
     if (!isRegistered) {
       this.router.navigate(['/register']);

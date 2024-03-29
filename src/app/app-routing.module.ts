@@ -13,7 +13,7 @@ const routes: Routes = [
     data: { navbar: false }
   },
   {
-    path: 'register', component:RegisterComponent,
+    path: 'register', component: RegisterComponent, canActivate: [RegistrationGuard],
     data: { navbar: true }
   },
   {
@@ -22,14 +22,14 @@ const routes: Routes = [
   },
   {
     path: 'goal', component: GoalComponent, canActivate: [RegistrationGuard],
-    data: { navbar: true, mode:'create' }
+    data: { navbar: true, mode: 'create' }
   },
   {
     path: 'goal/:id/:isActivated', component: GoalComponent, canActivate: [RegistrationGuard],
-    data: { navbar: true, mode:'update' }
+    data: { navbar: true, mode: 'update' }
   },
   {
-    path: 'about', component: AboutPageComponent,
+    path: 'about', component: AboutPageComponent, canActivate: [RegistrationGuard],
     data: { navbar: true }
   },
   {

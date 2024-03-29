@@ -32,13 +32,23 @@ export class GoalComponent {
     unit:null
   };
 
+  goalDataToReset: Goal = {
+    description: null,
+    startDate: null,
+    endDate: null,
+    isQuitting: false,
+    goalValue: null,
+    unit:null
+  };
+
   constructor(
     private authService: AuthService,
     private goalService: GoalService,
     private router: Router, private route: ActivatedRoute
   ) {
     const currentDate = new Date();
-    this.minStartDate = this.minEndDate = this.splitToIncludeDateOnly(currentDate);
+    // at first start date and end date is the current date
+    this.minStartDate = this.minEndDate =  this.splitToIncludeDateOnly(currentDate); 
 
     this.route.data.subscribe(data => {
       this.mode = data['mode'];
@@ -66,17 +76,41 @@ export class GoalComponent {
   }
 
   // function to ensure end date is after the start date
-  // TODO if user selects end date first then this logic may not work, needs as update for this
   minEndDateBasedOnStartDate() {
     if (this.goalData.startDate) {
       const startDate = new Date(this.goalData.startDate);
+      // above code gives yesterday date at certain times due to time zone difference 
+      // making end date selection to be 1 day after the start date 
       this.minEndDate = this.splitToIncludeDateOnly(new Date(startDate.setDate(startDate.getDate() + 1)));
+      // if user selects end date to be less than tomorrow's date then, resetting the end date value
+      if (this.goalData.endDate && new Date(this.goalData.endDate) < new Date(this.minEndDate)) {
+        this.goalData.endDate = '';
+      }
     }
   }
 
-  // as date string value includes time as well, so, splitting it to get date only
+  // function to clear start date if it is greater than end date
+  // does not require it in current implementation
+  // however, implemented it just to ensure double validation
+  minStartDateBasedOnEndDate() {
+    if (this.goalData.endDate) {
+      if (this.goalData.startDate && new Date(this.goalData.startDate) > new Date(this.goalData.endDate)) {
+        this.goalData.startDate = ''; // start date can not be after the end date so clearing it if user tries to do so
+      }
+    }
+  }
+
+  // as date string value includes time as well, so, only getting date value
   splitToIncludeDateOnly(date: Date): string {
-    return date.toISOString().split('T')[0];
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+  
+    // adds leading 0 to make date format in YYYY-MM-DD
+    const paddedMonth = month.toString().padStart(2, '0');
+    const paddedDay = day.toString().padStart(2, '0');
+  
+    return `${year}-${paddedMonth}-${paddedDay}`;
   }
 
   // invokes post route by calling method in goal service
@@ -99,7 +133,7 @@ export class GoalComponent {
           icon: 'success',
           confirmButtonText: 'OK'
         });
-        goalForm.resetForm(this.goalData);
+        goalForm.resetForm(this.goalDataToReset);
       } catch (err) {
         console.error('Error:', err);
         Swal.fire({

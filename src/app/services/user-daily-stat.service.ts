@@ -31,7 +31,7 @@ export class UserDailyStatService {
       load: false, percentage: 0, info: 'This percentage shows the percentage of users you bested in your area.'
     },
     { name: 'Same Level Users', color: '#035710', load: false, percentage: 0, info: 'This percentage shows the total number of users with same level of performance in your area.' },
-    { name: 'Ranking Score', color: '#070357', load: false, percentage: 0, info: 'Your ranking against every users in your area. Higher percentage means you achievements are unique.' }
+    { name: 'Ranking Score', color: '#070357', load: false, percentage: 0, info: 'Your ranking against every users in your area. Higher percentage means your achievements are unique.' }
   ];
 
   constructor(private http: HttpClient) { }

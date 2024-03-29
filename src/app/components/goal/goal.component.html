@@ -24,7 +24,7 @@
         <div class="inputBox">
           <label for="endDate">End Date</label>
           <input type="date" id="endDate" name="endDate" required #msgRef3="ngModel"
-            [(ngModel)]="goalData.endDate" [min]="minEndDate" />
+            [(ngModel)]="goalData.endDate" [min]="minEndDate" (change)="minStartDateBasedOnEndDate()"/>
           <small [class.hide]="!(msgRef3.touched && msgRef3.invalid)">Select a valid end date!</small>
         </div>
         <div class="inputBox">

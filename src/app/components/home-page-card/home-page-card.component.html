@@ -1,26 +1,15 @@
-<!-- date selection input wrapped in a flexbox container for center alignment -->
-<div class="d-flex justify-content-center">
-  <input type="date" id="selectedDate" name="selectedDate" [(ngModel)]="selectedDate"
-    (change)="basedOnSelectedDate()" [max]="upToDateSelection"/>
-</div>
-<!-- main container for the goals and progress records sections -->
-<div class="container">
+<div class="container mt-5">
   <div class="row">
-    <!-- column for displaying user goals -->
     <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center align-items-center">
-      <!-- conditionally display goals if found, otherwise show a message prompting goal creation -->
       <ng-container *ngIf="isGoalFound; else goalDataNotAvailable">
-        <!-- card displaying user goals -->
         <div class="mainCard card" style="width: 25rem; padding-bottom: 20px;">
           <div class="card-header text-center">
             Your Goals
           </div>
-          <!-- iterate over each goal and display it -->
           <div *ngFor="let goal of goalData" [class.selected]="goal.id === goalSelected" (click)="onGoalSelection(goal)"
             class="innerCard card mx-auto" style="width: 24rem;">
             <div class="d-flex align-items-center">
               <p class="card-text m-0">{{ goal.description }}</p>
-              <!-- display a checkmark for the selected goal -->
               <ng-container *ngIf="goal.id === goalSelected">
                 <img src="assets/images/checked.png" class="ml-2">
               </ng-container>
@@ -33,11 +22,8 @@
       </ng-template>
     </div>
 
-    <!-- column for displaying selected goal details -->
     <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center align-items-center">
-      <!-- conditionally display selected goal details or a message if no goal is selected -->
       <section *ngIf="goalSelected; else goalNotSelected">
-        <!-- card displaying selected goal details -->
         <div class="mainCard card" style="width: 25rem; padding-bottom: 10px;">
           <div class="card-header text-center">
             Selected Goal Details
@@ -74,7 +60,6 @@
             </div>
           </ng-template>
           <div class="d-flex justify-content-center">
-            <!-- Conditional buttons based on the goal's activation status -->
             <ng-container *ngIf="goalDataById.isActivated; else notActivatedBtn">
               <button class="myButton btn" (click)="activateOrDeactivate()">Deactivate</button></ng-container>
             <ng-template #notActivatedBtn><button class="myButton btn"
@@ -87,14 +72,18 @@
         <div class="goalMessage">Select your goal if created to see its details.</div>
       </ng-template>
     </div>
-    <!-- column for logging and displaying progress records for the selected goal -->
     <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center align-items-center">
-      <!-- conditionally display progress records section or a message if no goal is selected -->
       <section *ngIf="goalSelected; else goalNotSelected_1">
         <div class="mainCard card" style="width: 25rem; padding-bottom: 10px;">
           <div class="card-header text-center">
-            Logged Activities
+            <div class="d-flex justify-content-center align-items-center">
+              Logged Activities
+              <div class="date-picker-container ml-2">
+                <input type="date" id="selectedDate" name="selectedDate" [(ngModel)]="selectedDate" (change)="basedOnSelectedDate()" [max]="upToDateSelection"/>
+              </div>
+            </div>
           </div>
+          
           <div #simplebarForScroll [class.forScrollingProgressRecord]="receivedProgressRecord.length > 2"
             *ngIf="receivedProgressRecord.length">
             <div *ngFor="let pr of receivedProgressRecord" class="innerCard card mx-auto" style="width: 24rem;">
@@ -102,6 +91,7 @@
                 <p class="card-text m-0 loggedPTag"><span>Note:</span> {{ pr.notes }}</p>
                 <p class="card-text m-0 loggedPTag"><span>Completed Value:</span> {{ pr.completedValue }}
                   {{goalDataById.unit}}</p>
+                  <p class="card-text m-0 loggedPTag"><span>Created Time:</span> {{ pr.createdTime | date: 'medium'}}</p>
               </div>
             </div>
           </div>
@@ -110,6 +100,7 @@
               <div class="text-center">
                 <p class="card-text m-0 loggedPTag"><span>Note:</span> Unavailable</p>
                 <p class="card-text m-0 loggedPTag"><span>Completed Value:</span> Unavailable</p>
+                <p class="card-text m-0 loggedPTag"><span>Created Time:</span> Unavailable</p>
               </div>
             </div>
           </ng-container>

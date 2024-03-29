@@ -31,6 +31,15 @@ export class AuthService {
     }
   }
 
+  // helps to know if user is authenticated or not at Amazon service
+  async userAuthenticationVerification(): Promise<boolean> {
+    try {
+      await Auth.currentAuthenticatedUser();
+      return true; // returns true if user is authenticated
+    } catch (error) {
+      return false; // returns false if user is not authenticated
+    }
+  }
 
   // retrieves AWS's custom attributes value
   // this function is being used to check if logged in user has registered their profile or not
