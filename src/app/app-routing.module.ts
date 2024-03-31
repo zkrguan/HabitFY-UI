@@ -13,7 +13,7 @@ const routes: Routes = [
     data: { navbar: false }
   },
   {
-    path: 'register', component: RegisterComponent, canActivate: [RegistrationGuard],
+    path: 'register', component: RegisterComponent,
     data: { navbar: true }
   },
   {
