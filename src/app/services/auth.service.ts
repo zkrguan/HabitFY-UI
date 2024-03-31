@@ -51,7 +51,27 @@ export class AuthService {
       const user = await Auth.currentAuthenticatedUser();
       const userParameters = await Auth.userAttributes(user); // getting current user's attributes
       // look for custom attribute named firstLogin and retrieve it's value
+      console.log(user);
+      console.log(userParameters);
+      // Sujan tell me where the fuck is that field?
+      // AWS seems removed that field or something else. 
+      // (4) [CognitoUserAttribute, CognitoUserAttribute, CognitoUserAttribute, CognitoUserAttribute]
+      // 0
+      // : 
+      // CognitoUserAttribute {Name: 'email', Value: 'zkrguan@gmail.com'}
+      // 1
+      // : 
+      // CognitoUserAttribute {Name: 'email_verified', Value: 'true'}
+      // 2
+      // : 
+      // CognitoUserAttribute {Name: 'name', Value: 'Zhaokai Guan'}
+      // 3
+      // : 
+      // CognitoUserAttribute {Name: 'sub', Value: 'd4e87428-8071-7062-dc48-531e269a65cb'}      
+      // _________________________________________________________________
+
       const isFirstLogin = userParameters.find(user => user.Name === 'custom:firstLogin');
+     
       console.log("Check if user logged in for the first time ", isFirstLogin);
       // assigns true if user has already set up their profile, if not then false
       // value of this custom attribute is being changed when user register for their profile
