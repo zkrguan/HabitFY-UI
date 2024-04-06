@@ -17,32 +17,36 @@
       <div class="formBody">
         <div class="inputBox">
           <label for="startDate">Start date</label>
-          <input type="date" id="startDate" name="startDate" required #msgRef1="ngModel" (focus)="emptyErrMsg()"
+          <input type="date" id="startDate" name="startDate" required #msgRef1="ngModel"
             [(ngModel)]="goalData.startDate" [min]="minStartDate" (change)="minEndDateBasedOnStartDate()" />
-          <small *ngIf="msgRef1.touched && msgRef1.invalid">Select a start date!</small>
+          <small [class.hide]="!(msgRef1.touched && msgRef1.invalid)">Select a start date!</small>
         </div>
         <div class="inputBox">
           <label for="endDate">End Date</label>
-          <input type="date" id="endDate" name="endDate" required #msgRef3="ngModel" (focus)="emptyErrMsg()"
-            [(ngModel)]="goalData.endDate" [min]="minEndDate" />
-          <small *ngIf="msgRef3.touched && msgRef3.invalid">Select a valid end date!</small>
+          <input type="date" id="endDate" name="endDate" required #msgRef3="ngModel"
+            [(ngModel)]="goalData.endDate" [min]="minEndDate" (change)="minStartDateBasedOnEndDate()"/>
+          <small [class.hide]="!(msgRef3.touched && msgRef3.invalid)">Select a valid end date!</small>
         </div>
         <div class="inputBox">
           <label for="description">Description</label>
           <input type="text" id="description" name="description" placeholder="Enter your description" required
-            #msgRef0="ngModel" (focus)="emptyErrMsg()" [(ngModel)]="goalData.description" />
-          <small *ngIf="msgRef0.touched && msgRef0.invalid">Enter your goal description!</small>
+            #msgRef0="ngModel"  [(ngModel)]="goalData.description" />
+          <small [class.hide]="!(msgRef0.touched && msgRef0.invalid)">Enter your goal description!</small>
         </div>
         <div class="inputBox">
           <label for="goalValue">Increase to/Reduce to</label>
-          <input type="number" id="goalValue" name="goalValue" placeholder="Enter your goal Value" required
-            #msgRef4="ngModel" (focus)="emptyErrMsg()" [(ngModel)]="goalData.goalValue" />
-          <small *ngIf="msgRef4.touched && msgRef4.invalid">Enter a valid age!</small>
+          <input type="number" id="goalValue" name="goalValue" placeholder="Enter your goal value" required
+            #msgRef4="ngModel"  [(ngModel)]="goalData.goalValue" />
+          <small [class.hide]="!(msgRef4.touched && msgRef4.invalid)">Enter a valid age!</small>
         </div>
       </div>
-      <div *ngIf="errMsg" class="text-center">
-        {{ errMsg }}
-      </div>
+      <div class="d-flex justify-content-center">
+      <div class="unitInputBox">
+        <p class="text-center" for="unit">Unit</p>
+        <input class="text-center" type="string" id="unit" name="unit" placeholder="Enter your goal unit" required
+          #msgRef5="ngModel"  [(ngModel)]="goalData.unit" />
+        <small [class.hide]="!(msgRef5.touched && msgRef5.invalid)">Enter your goal unit!</small>
+      </div></div>
       <div class="registerButton d-flex justify-content-center" *ngIf="mode == 'create'">
         <input type="submit" class="btn btn-light" value="Set up" [disabled]="!goalForm.form.valid" />
       </div>

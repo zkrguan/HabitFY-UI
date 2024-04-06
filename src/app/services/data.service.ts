@@ -1,32 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-// import { Observable } from 'rxjs';
-// import { Auth } from 'aws-amplify';
-// import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DataService {
-  // TODO get from api just a test
-  progress = [
-    {
-      name: 'Level of Progress',
-      percentage: 65,
-      color: '#570303',
-      load: false,
-    },
-    { name: 'Goals Completed', percentage: 85, color: '#035710', load: false },
-    { name: 'Goals Remaining', percentage: 75, color: '#070357', load: false },
-  ];
-
-  // TODO get from api just a test
-  mainGoals = [
-    { goal: 'Read 50 books.', color: '#FFC9CD' },
-    { goal: 'Drink 8 glass of water everyday.', color: '#D6FFCC' },
-    { goal: 'Workout 1 hour everyday.', color: '#C7D0FF' },
-  ];
-
+  // initializing motivational quotes
   quotes = [
     {
       quote:
@@ -96,40 +74,10 @@ export class DataService {
     },
   ];
 
-  // TODO get from api just a test
-  habits = [
-    'Some quick example text to build on the card.',
-    'Some quick example text to build on the card.',
-    'Some quick example text to build on the card.',
-  ].map((habit) => ({ value: habit, selected: false }));
+  constructor() { }
 
-  // TODO get from api just a test
-  dailies = [
-    'Some quick example text to build on the card.',
-    'Some quick example text to build on the card.',
-    'Some quick example text to build on the card.',
-  ].map((daily) => ({ value: daily, selected: false }));
-
-  // TODO fetching data from backend
-  constructor(private http: HttpClient) {}
-
+  // return initialized motivational quotes
   getQuotes() {
     return this.quotes;
-  }
-
-  getMainGoals() {
-    return this.mainGoals;
-  }
-
-  getProgress() {
-    return this.progress;
-  }
-
-  getHabits() {
-    return this.habits;
-  }
-
-  getDailies() {
-    return this.dailies;
   }
 }

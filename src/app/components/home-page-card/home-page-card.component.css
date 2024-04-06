@@ -1,13 +1,14 @@
 .mainCard {
-    margin-top: 20px;
+    margin-top: 10px;
     background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 0%;
+    border-radius: 2%;
 }
 
 .card-header {
     font-size: 20px;
     color: white;
     margin-bottom: 4px;
+    font-family: 'Chakra Petch', sans-serif;
 }
 
 .innerCard {
@@ -39,6 +40,48 @@ img {
     width: 15px;
 }
 
+.formBody {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 10px 8px;
+    color: white;
+    margin-bottom: 0px;
+}
+
+.inputBox:nth-child(2n) {
+    justify-content: end;
+}
+
+.inputBox {
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-bottom: -10px;
+    margin-top: -15px;
+    border-top: 1px solid rgba(243, 234, 234, 0.5);
+    border-bottom: 1px solid rgba(243, 234, 234, 0.5);
+}
+
+.inputBox label {
+    font-size: 15px;
+    margin-bottom: 2px;
+}
+
+.inputBox input {
+    height: 31px;
+}
+
+small {
+    color: rgb(189, 7, 7);
+}
+
+input.ng-touched.ng-invalid {
+    border: 1.5px solid red;
+}
+
 .myButton {
     font-family: 'Chakra Petch', sans-serif;
     padding: 5px 10px;
@@ -48,7 +91,7 @@ img {
     background-color: #53c733b3;
 }
 
-.goalDetails{
+.goalDetails {
     list-style: none;
     margin-left: 0px;
     padding-left: 10px;
@@ -56,32 +99,73 @@ img {
     text-align: center;
 }
 
-.goalMessage{
+.goalMessage {
     font-size: 16px;
     color: #53c733b3;
     text-shadow:
-    0 0 1px #53c733b3,
-      0 0 5px #53c733b3,
-      0 0 14px #53c733b3,
-      0 0 38px #fff,
-      0 0 99px #fff,
-      0 0 87px #fff,
-      0 0 100px #fff;
-      margin-top: 50px;
+        0 0 1px #53c733b3,
+        0 0 5px #53c733b3,
+        0 0 14px #53c733b3,
+        0 0 38px #fff,
+        0 0 99px #fff,
+        0 0 87px #fff,
+        0 0 100px #fff;
+    margin-top: 50px;
 }
 
-ul li{
+ul li {
     font-size: 15px;
 }
-section{
-    margin-top: 15px;
-    box-shadow: 0 0 1px #fff,
-            0 0 5px #53c733b3, 
-            inset 0 0 1px #53c733b3; 
+
+span {
+    font-weight: bold;
 }
 
-span{
-    font-weight: bold;
+form {
+    margin-top: 10px;
+}
+
+.loggedPTag {
+    font-size: 15px;
+}
+
+.hide {
+    visibility: hidden;
+}
+
+.forScrollingProgressRecord {
+    max-height: 120px;
+    overflow-y: auto;
+}
+
+.date-picker-container input[type="date"] {
+    position: relative;
+    width: 32px; 
+    height: 32px; 
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    color: transparent; 
+    overflow: hidden;
+    -webkit-appearance: none;
+}
+
+.date-picker-container input[type="date"]:focus {
+    outline: none;
+    border: none; 
+    box-shadow: none; 
+}
+
+.date-picker-container input[type="date"]:focus::-webkit-datetime-edit-year-field,
+.date-picker-container input[type="date"]:focus::-webkit-datetime-edit-month-field,
+.date-picker-container input[type="date"]:focus::-webkit-datetime-edit-day-field,
+.date-picker-container input[type="date"]:focus::-webkit-datetime-edit-fields-wrapper {
+    display: none; 
+}
+
+.date-picker-container input[type="date"]:focus::-ms-clear,
+.date-picker-container input[type="date"]:focus::-ms-reveal {
+    display: none;
 }
 
 @media screen and (max-width: 768px) {
@@ -94,7 +178,7 @@ span{
         font-size: 15px;
     }
 
-    .goalNotSelectedMessage{
+    .goalNotSelectedMessage {
         margin-top: 15px;
     }
 }

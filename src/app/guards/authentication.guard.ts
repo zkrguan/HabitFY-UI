@@ -5,16 +5,17 @@ import { AuthService } from '../services/auth.service';
 @Injectable({
   providedIn: 'root'
 })
-// helps to make sure user has registered a profile
-// if not send it back to registration page
-export class RegistrationGuard implements CanActivate {
+
+export class AuthenticationGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) { }
 
+  // helps to make sure user is authenticated
+  // if not send user back to login page
   async canActivate(): Promise<boolean> {
-    // checking if user has created register profile or not
-    const isRegistered = await this.authService.getUserParametersFromCognito();
-    if (!isRegistered) {
-      this.router.navigate(['/register']);
+    // checking if user is authenticated or not
+    const isAuthenticated = await this.authService.userAuthenticationVerification();
+    if (!isAuthenticated) {
+      this.router.navigate(['/login']);
       return false;
     }
     return true;

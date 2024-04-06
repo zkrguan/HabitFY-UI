@@ -4,16 +4,16 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Goal } from 'src/app/interfaces/goal';
 import { AuthService } from 'src/app/services/auth.service';
 import { GoalService } from 'src/app/services/goal.service';
-
+import Swal from 'sweetalert2';
+import { Notyf } from 'notyf';
+const notyf = new Notyf();
 @Component({
   selector: 'app-goal',
   templateUrl: './goal.component.html',
   styleUrls: ['./goal.component.css']
 })
 export class GoalComponent {
-  errMsg: string = '';
   userId: string = '';
-  userEmail: string = '';
   minStartDate: string;
   minEndDate: string;
   goalIdFromHomePageCard: Number = -1;
@@ -29,6 +29,16 @@ export class GoalComponent {
     endDate: null,
     isQuitting: false,
     goalValue: null,
+    unit:null
+  };
+
+  goalDataToReset: Goal = {
+    description: null,
+    startDate: null,
+    endDate: null,
+    isQuitting: false,
+    goalValue: null,
+    unit:null
   };
 
   constructor(
@@ -37,7 +47,8 @@ export class GoalComponent {
     private router: Router, private route: ActivatedRoute
   ) {
     const currentDate = new Date();
-    this.minStartDate = this.minEndDate = this.splitToIncludeDateOnly(currentDate);
+    // at first start date and end date is the current date
+    this.minStartDate = this.minEndDate =  this.splitToIncludeDateOnly(currentDate); 
 
     this.route.data.subscribe(data => {
       this.mode = data['mode'];
@@ -65,39 +76,72 @@ export class GoalComponent {
   }
 
   // function to ensure end date is after the start date
-  // TODO if user selects end date first then this logic may not work, needs as update for this
   minEndDateBasedOnStartDate() {
     if (this.goalData.startDate) {
       const startDate = new Date(this.goalData.startDate);
+      // above code gives yesterday date
+      // making end date selection to be 1 day after the start date 
       this.minEndDate = this.splitToIncludeDateOnly(new Date(startDate.setDate(startDate.getDate() + 1)));
+      // if user selects end date to be less than tomorrow's date then, resetting the end date value
+      if (this.goalData.endDate && new Date(this.goalData.endDate) < new Date(this.minEndDate)) {
+        this.goalData.endDate = '';
+      }
     }
   }
 
-  // as date string value includes time as well, so, splitting it to get date only
+  // function to clear start date if it is greater than end date
+  // does not require it in current implementation
+  // however, implemented it just to ensure double validation
+  minStartDateBasedOnEndDate() {
+    if (this.goalData.endDate) {
+      if (this.goalData.startDate && new Date(this.goalData.startDate) > new Date(this.goalData.endDate)) {
+        this.goalData.startDate = ''; // start date can not be after the end date so clearing it if user tries to do so
+      }
+    }
+  }
+
+  // as date string value includes time as well, so, only getting date value
   splitToIncludeDateOnly(date: Date): string {
-    return date.toISOString().split('T')[0];
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+  
+    // adds leading 0 to make date format in YYYY-MM-DD
+    const paddedMonth = month.toString().padStart(2, '0');
+    const paddedDay = day.toString().padStart(2, '0');
+  
+    return `${year}-${paddedMonth}-${paddedDay}`;
   }
 
   // invokes post route by calling method in goal service
   async onGoalRegister(goalForm: NgForm) {
     console.log(this.goalData);
-    this.userEmail = await this.authService.getCognitoUserEmail();
     if (goalForm.valid) {
       try {
         const reqGoalData = {
           ...goalForm.value,
           profileId: this.userId,
-          emailAddress: this.userEmail,
         };
         console.log('Goal Register Form:', reqGoalData);
         const res = await this.goalService.postGoalData(
           reqGoalData
         );
         console.log('Server response:', res);
-        goalForm.resetForm();
+        Swal.fire({
+          title: 'Success!',
+          text: 'You successful created a new goal!',
+          icon: 'success',
+          confirmButtonText: 'OK'
+        });
+        goalForm.resetForm(this.goalDataToReset);
       } catch (err) {
         console.error('Error:', err);
-        this.errMsg = 'Unable to register your goal!';
+        Swal.fire({
+          title: 'Success!',
+          text: 'Unable to create a new goal!',
+          icon: 'error',
+          confirmButtonText: 'OK'
+        });
       }
     }
   }
@@ -130,7 +174,7 @@ export class GoalComponent {
       }
     } catch (error) {
       console.error('Error loading user goalByGoalId in goal page:', error);
-      this.errMsg = 'Error! Unable to fetch user goal!';
+      notyf.error('Failed to load your selected goal!');
     }
   }
 
@@ -149,14 +193,11 @@ export class GoalComponent {
         );
         console.log('Server response on update route at goal page:', res);
         this.router.navigate(['/home']);
+        notyf.success('Successfully updated your goal!');
       } catch (err) {
         console.error('Error:', err);
-        this.errMsg = 'Unable to update your goal!';
+        notyf.error('Failed to update your goal!');
       }
     }
-  }
-
-  emptyErrMsg() {
-    this.errMsg = '';
   }
 }

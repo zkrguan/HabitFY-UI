@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mt-5">
   <div class="row">
     <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center align-items-center">
       <ng-container *ngIf="isGoalFound; else goalDataNotAvailable">
@@ -6,7 +6,6 @@
           <div class="card-header text-center">
             Your Goals
           </div>
-
           <div *ngFor="let goal of goalData" [class.selected]="goal.id === goalSelected" (click)="onGoalSelection(goal)"
             class="innerCard card mx-auto" style="width: 24rem;">
             <div class="d-flex align-items-center">
@@ -22,13 +21,13 @@
         <div class="goalMessage">Create your goals to view it.</div>
       </ng-template>
     </div>
+
     <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center align-items-center">
-      <section class="goalDetailsMainSection" *ngIf="goalSelected; else goalNotSelected">
+      <section *ngIf="goalSelected; else goalNotSelected">
         <div class="mainCard card" style="width: 25rem; padding-bottom: 10px;">
           <div class="card-header text-center">
             Selected Goal Details
           </div>
-
           <ul class="goalDetails">
             <div class="innerCard">
               <li><span>Start Date: {{goalDataById.startDate | date}}</span></li>
@@ -38,7 +37,7 @@
               </span></div>
             <ng-container *ngIf="goalDataById.isQuitting else notQuitting">
               <div class="innerCard"> <span>
-                  <li>Decrease To: {{goalDataById.goalValue}}</li>
+                  <li>Decrease To: {{goalDataById.goalValue}} {{goalDataById.unit}}</li>
                 </span></div>
               <div class="innerCard">
                 <li>Your goal is to <span class="toBoldText">quit</span> this habit.</li>
@@ -54,7 +53,7 @@
           </ng-template>
           <ng-template #notQuitting>
             <div class="innerCard">
-              <li><span>Increase To: {{goalDataById.goalValue}}</span></li>
+              <li><span>Increase To: {{goalDataById.goalValue}} {{goalDataById.unit}}</span></li>
             </div>
             <div class="innerCard">
               <li>Your goal is to <span class="toBoldText">amplify</span> this habit.</li>
@@ -71,6 +70,63 @@
       </section>
       <ng-template #goalNotSelected>
         <div class="goalMessage">Select your goal if created to see its details.</div>
+      </ng-template>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12 d-flex justify-content-center align-items-center">
+      <section *ngIf="goalSelected; else goalNotSelected_1">
+        <div class="mainCard card" style="width: 25rem; padding-bottom: 10px;">
+          <div class="card-header text-center">
+            <div class="d-flex justify-content-center align-items-center">
+              Logged Activities
+              <div class="date-picker-container ml-2">
+                <input type="date" id="selectedDate" name="selectedDate" [(ngModel)]="selectedDate" (change)="basedOnSelectedDate()" [max]="upToDateSelection"/>
+              </div>
+            </div>
+          </div>
+          
+          <div #simplebarForScroll [class.forScrollingProgressRecord]="receivedProgressRecord.length > 2"
+            *ngIf="receivedProgressRecord.length">
+            <div *ngFor="let pr of receivedProgressRecord" class="innerCard card mx-auto" style="width: 24rem;">
+              <div class="text-center">
+                <p class="card-text m-0 loggedPTag"><span>Note:</span> {{ pr.notes }}</p>
+                <p class="card-text m-0 loggedPTag"><span>Completed Value:</span> {{ pr.completedValue }}
+                  {{goalDataById.unit}}</p>
+                  <p class="card-text m-0 loggedPTag"><span>Created Time:</span> {{ pr.createdTime | date: 'medium'}}</p>
+              </div>
+            </div>
+          </div>
+          <ng-container *ngIf="!receivedProgressRecord?.length">
+            <div class="innerCard card mx-auto" style="width: 24rem;">
+              <div class="text-center">
+                <p class="card-text m-0 loggedPTag"><span>Note:</span> Unavailable</p>
+                <p class="card-text m-0 loggedPTag"><span>Completed Value:</span> Unavailable</p>
+                <p class="card-text m-0 loggedPTag"><span>Created Time:</span> Unavailable</p>
+              </div>
+            </div>
+          </ng-container>
+          <form #progressRecordForm="ngForm" (ngSubmit)="onProgressRecordRegister(progressRecordForm)">
+            <div class="formBody">
+              <div class="inputBox">
+                <label for="Notes">Note</label>
+                <input type="text" id="notes" name="notes" required #msgRef1="ngModel"
+                  [(ngModel)]="progressRecordByGoalId.notes" />
+                <small [class.hide]="!(msgRef1.touched && msgRef1.invalid)">Create your note for today</small>
+              </div>
+              <div class="inputBox">
+                <label for="completedValue">Completed goal value</label>
+                <input type="number" id="completedValue" name="completedValue" required #msgRef2="ngModel"
+                  [(ngModel)]="progressRecordByGoalId.completedValue" />
+                <small [class.hide]="!(msgRef2.touched && msgRef2.invalid)">Log today's goal value</small>
+              </div>
+            </div>
+            <div class="confirmButton d-flex justify-content-center">
+              <input type="submit" class="myButton btn" value="Confirm" [disabled]="!progressRecordForm.form.valid" />
+            </div>
+          </form>
+        </div>
+      </section>
+      <ng-template #goalNotSelected_1>
+        <div class="goalMessage">Select your goal to log today's activity.</div>
       </ng-template>
     </div>
   </div>

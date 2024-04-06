@@ -6,6 +6,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { RegistrationGuard } from './guards/registration.guard';
 import { AboutPageComponent } from './components/about-page/about-page.component';
 import { GoalComponent } from './components/goal/goal.component';
+import { AuthenticationGuard } from './guards/authentication.guard';
 
 const routes: Routes = [
   {
@@ -13,23 +14,23 @@ const routes: Routes = [
     data: { navbar: false }
   },
   {
-    path: 'register', component:RegisterComponent,
+    path: 'register', component: RegisterComponent,  canActivate: [AuthenticationGuard],
     data: { navbar: true }
   },
   {
-    path: 'home', component: HomePageComponent, canActivate: [RegistrationGuard],
+    path: 'home', component: HomePageComponent, canActivate: [AuthenticationGuard, RegistrationGuard],
     data: { navbar: true }
   },
   {
-    path: 'goal', component: GoalComponent, canActivate: [RegistrationGuard],
-    data: { navbar: true, mode:'create' }
+    path: 'goal', component: GoalComponent, canActivate: [AuthenticationGuard, RegistrationGuard],
+    data: { navbar: true, mode: 'create' }
   },
   {
-    path: 'goal/:id/:isActivated', component: GoalComponent, canActivate: [RegistrationGuard],
-    data: { navbar: true, mode:'update' }
+    path: 'goal/:id/:isActivated', component: GoalComponent, canActivate: [AuthenticationGuard, RegistrationGuard],
+    data: { navbar: true, mode: 'update' }
   },
   {
-    path: 'about', component: AboutPageComponent,
+    path: 'about', component: AboutPageComponent, canActivate: [AuthenticationGuard, RegistrationGuard],
     data: { navbar: true }
   },
   {
