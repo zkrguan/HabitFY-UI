@@ -138,7 +138,6 @@ export class HomeUserProfileComponent {
     // returns right hand operand if left hand operand is null or undefined because of ??
     const plannedGoal = this.userDailyStatistics.data.planedToFinishGoalCount ?? 0;
     const actualFinishedGoal = this.userDailyStatistics.data.actualFinishedGoalCount ?? 0;
-    console.log("planned goal: ", this.userDailyStatistics.data.planedToFinishGoalCount);
     if (plannedGoal > 0) {
       // calculating goal completion in percentage and in whole number
       return Math.round((actualFinishedGoal / plannedGoal) * 100);
@@ -175,13 +174,20 @@ export class HomeUserProfileComponent {
   getUserRankScore(): number {
     const sameCount = this.userDailyStatistics.data.samePerformanceUsersCount ?? 0;
     const totalCount = this.userDailyStatistics.data.totalUserCountInPostalCode ?? 1;
+    if (sameCount === 0 && totalCount === 1) {
+      return 0;
+    }
     return Math.round((1 - (sameCount / totalCount)) * 100);
   }
 
   // updates the progress bars by calling the methods
   updateProgressPercentages(): void {
     this.progress[0].percentage = this.getGoalCompletedPercentage();
-    this.progress[1].percentage = 100 - this.getGoalCompletedPercentage();
+    // if no goals were planned then, no need to calculate for completed goal percentage
+    if ((this.userDailyStatistics?.data?.planedToFinishGoalCount ?? 0) > 0)
+      this.progress[1].percentage = 100 - this.getGoalCompletedPercentage();
+    else
+      this.progress[1].percentage = 0;
     this.progress_2[0].percentage = this.getBeatingCompetitorPercentage();
     this.progress_2[1].percentage = this.getUsersAtSameLevel();
     this.progress_2[2].percentage = this.getUserRankScore();

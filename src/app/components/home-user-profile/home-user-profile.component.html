@@ -5,13 +5,20 @@
         <div class="col-md-4 col-12 mb-2 mb-md-0 imgNameBar">
           <div class="imageAndName d-flex">
             <div class="avatar">
-              <ng-container *ngIf="registerData.sex === 'Male'">
-                <img class="rounded-circle" src='assets/images/maleAvatar.png' alt="image not found" />
+              <ng-container *ngIf="registerData.sex === 'Male'; else otherGender">
+                <img class="rounded-circle" src='assets/images/maleAvatar.png' alt="Male avatar" />
               </ng-container>
-              <ng-container *ngIf="registerData.sex === 'Female'">
-                <img class="rounded-circle" src='assets/images/femaleAvatar.png' alt="image not found" />
-              </ng-container>
-            </div>
+            
+              <ng-template #otherGender>
+                <ng-container *ngIf="registerData.sex === 'Female'; else defaultAvatar">
+                  <img class="rounded-circle" src='assets/images/femaleAvatar.png' alt="Female avatar" />
+                </ng-container>
+              </ng-template>
+            
+              <ng-template #defaultAvatar>
+                <img class="rounded-circle" src='assets/images/astronautAvatar.png' alt="Default avatar" />
+              </ng-template>
+            </div>            
             <div>
               <p class="card-title">{{userId}}</p>
               <ng-container *ngIf="(userDailyStatistics.data?.reachedGoalStreak ?? 0) <= 25">
@@ -37,7 +44,7 @@
                   {{ ranks[3].name }}</p>
               </ng-container>
               <p class="mb-2 text-muted" style="margin-top: -10px; font-size: 13px;">Goal Streak:
-                {{userDailyStatistics.data.reachedGoalStreak}}</p>
+                {{userDailyStatistics?.data?.reachedGoalStreak ?? 0}}</p>
             </div>
           </div>
           <div *ngFor="let p of progress" class="progress-container">
