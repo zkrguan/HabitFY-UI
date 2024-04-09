@@ -1,4 +1,4 @@
 export const environment = {
     prod: true,
-    url: 'https://localhost:8080' 
+    url: 'https://habitfy-api-server.azurewebsites.net' 
   };
