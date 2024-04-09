@@ -137,7 +137,7 @@ export class GoalComponent {
       } catch (err) {
         console.error('Error:', err);
         Swal.fire({
-          title: 'Success!',
+          title: 'Failed!',
           text: 'Unable to create a new goal!',
           icon: 'error',
           confirmButtonText: 'OK'
