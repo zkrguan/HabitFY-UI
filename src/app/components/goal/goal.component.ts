@@ -29,7 +29,7 @@ export class GoalComponent {
     endDate: null,
     isQuitting: false,
     goalValue: null,
-    unit:null
+    unit: null
   };
 
   goalDataToReset: Goal = {
@@ -38,7 +38,7 @@ export class GoalComponent {
     endDate: null,
     isQuitting: false,
     goalValue: null,
-    unit:null
+    unit: null
   };
 
   constructor(
@@ -48,7 +48,7 @@ export class GoalComponent {
   ) {
     const currentDate = new Date();
     // at first start date and end date is the current date
-    this.minStartDate = this.minEndDate =  this.splitToIncludeDateOnly(currentDate); 
+    this.minStartDate = this.minEndDate = this.splitToIncludeDateOnly(currentDate);
 
     this.route.data.subscribe(data => {
       this.mode = data['mode'];
@@ -105,11 +105,11 @@ export class GoalComponent {
     const year = date.getFullYear();
     const month = date.getMonth() + 1;
     const day = date.getDate();
-  
+
     // adds leading 0 to make date format in YYYY-MM-DD
     const paddedMonth = month.toString().padStart(2, '0');
     const paddedDay = day.toString().padStart(2, '0');
-  
+
     return `${year}-${paddedMonth}-${paddedDay}`;
   }
 

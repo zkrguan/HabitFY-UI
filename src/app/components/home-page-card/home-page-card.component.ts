@@ -1,4 +1,4 @@
-import { Component, AfterViewChecked, ElementRef, ViewChild} from '@angular/core';
+import { Component, AfterViewChecked, ElementRef, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Goal } from 'src/app/interfaces/goal';
@@ -137,7 +137,7 @@ export class HomePageCardComponent implements AfterViewChecked {
           console.log('No progress record found')
           // following condition helps not to notify when user de-selects the goal
           if (this.goalSelected != null)
-            notyf.error('Progress record unavailable.');
+            console.log('Progress record unavailable.')
         } else {
           // update component state with updated data received from the route
           this.receivedProgressRecord = progressRecord;
@@ -271,11 +271,11 @@ export class HomePageCardComponent implements AfterViewChecked {
     const year = date.getFullYear();
     const month = date.getMonth() + 1;
     const day = date.getDate();
-  
+
     // adds leading 0 to make date format in YYYY-MM-DD
     const paddedMonth = month.toString().padStart(2, '0');
     const paddedDay = day.toString().padStart(2, '0');
-  
+
     return `${year}-${paddedMonth}-${paddedDay}`;
   }
 }

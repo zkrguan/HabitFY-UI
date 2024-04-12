@@ -72,8 +72,6 @@ export class HomeUserProfileComponent {
       console.log('User data:', userData);
       if (!userData) {
         console.log('No user data found for analytic report.');
-        // if user registration information is not found then, showing error message
-        notyf.error('No user data found for analytic report.');
       } else {
         console.log('User data:', userData);
         // using spread operator to perform shallow copy of retrieved user registration information
@@ -85,7 +83,6 @@ export class HomeUserProfileComponent {
       }
     } catch (error) { // handles thrown error while fetching user registration information
       console.error('Error loading user data for analytic report:', error);
-      notyf.error('Failed to load your profile information for analytic report!');
     }
   }
 
@@ -117,12 +114,9 @@ export class HomeUserProfileComponent {
           },
           postalCode: null,
         };
-        // showing error message to the user
-        notyf.error('Failed to load your analytic report!');
       }
     } catch (error) {
       console.error("Failed to load user daily stats:", error);
-      notyf.error('Failed to load your analytic report!');
     }
   }
 

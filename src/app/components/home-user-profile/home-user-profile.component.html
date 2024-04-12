@@ -8,17 +8,17 @@
               <ng-container *ngIf="registerData.sex === 'Male'; else otherGender">
                 <img class="rounded-circle" src='assets/images/maleAvatar.png' alt="Male avatar" />
               </ng-container>
-            
+
               <ng-template #otherGender>
                 <ng-container *ngIf="registerData.sex === 'Female'; else defaultAvatar">
                   <img class="rounded-circle" src='assets/images/femaleAvatar.png' alt="Female avatar" />
                 </ng-container>
               </ng-template>
-            
+
               <ng-template #defaultAvatar>
                 <img class="rounded-circle" src='assets/images/astronautAvatar.png' alt="Default avatar" />
               </ng-template>
-            </div>            
+            </div>
             <div>
               <p class="card-title">{{userId}}</p>
               <ng-container *ngIf="(userDailyStatistics.data?.reachedGoalStreak ?? 0) <= 25">

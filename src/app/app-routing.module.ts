@@ -14,7 +14,7 @@ const routes: Routes = [
     data: { navbar: false }
   },
   {
-    path: 'register', component: RegisterComponent,  canActivate: [AuthenticationGuard],
+    path: 'register', component: RegisterComponent, canActivate: [AuthenticationGuard],
     data: { navbar: true }
   },
   {

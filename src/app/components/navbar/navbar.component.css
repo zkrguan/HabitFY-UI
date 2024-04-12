@@ -31,7 +31,7 @@ button {
     padding: 0.25rem 0.4rem;
 }
 
-nav{
+nav {
     padding: 0rem;
     background-color: black;
 }
@@ -43,7 +43,7 @@ nav{
 .nav-link.disabled {
     color: #72787f;
     font-weight: 600;
-  }
+}
 
 @media (max-width: 768px) {
     .navbar-brand {
@@ -53,7 +53,8 @@ nav{
     .nav-link {
         font-size: 18px;
     }
-    img{
-        width: 32px!important;
+
+    img {
+        width: 32px !important;
     }
 }

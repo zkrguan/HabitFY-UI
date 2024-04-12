@@ -1,5 +1,5 @@
 .card {
-  background-color: rgb(255, 255, 255,0.5);
+  background-color: rgb(255, 255, 255, 0.5);
   border: none;
   border-radius: 0%;
   padding-bottom: 18px;
@@ -35,7 +35,7 @@
   padding: 0;
 }
 
-.progress-container_2{
+.progress-container_2 {
   margin-left: 88px;
 }
 
@@ -88,7 +88,7 @@
   color: black;
 }
 
-.subGoals{
+.subGoals {
   font-size: 17px;
 }
 
@@ -160,6 +160,7 @@
 }
 
 @media (max-width: 768px) {
+
   .card-title,
   .statsTitle,
   .displayedQuote {
@@ -168,15 +169,15 @@
 
   .card-subtitle {
     font-size: 15px;
-    margin-bottom: 15px!important;
+    margin-bottom: 15px !important;
   }
 
   .progress-name,
-  .percentage-value{
+  .percentage-value {
     font-size: 13px;
   }
 
-  .progress-name{
+  .progress-name {
     margin-top: 5px;
     margin-bottom: 7px;
     margin-right: 90px;
@@ -204,7 +205,7 @@
     border-bottom: 1px solid white;
   }
 
-  .progress-container{
+  .progress-container {
     margin-left: 88px;
   }
 }

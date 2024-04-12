@@ -68,7 +68,7 @@ input::placeholder {
   font-size: 17px;
 }
 
-.unitInputBox{
+.unitInputBox {
   width: 50%;
   padding-bottom: 10px;
 }
@@ -84,8 +84,9 @@ input::placeholder {
   display: block;
   height: 35px;
   padding: 0 5px;
-  margin: 0 auto; 
+  margin: 0 auto;
 }
+
 .unitInputBox input::placeholder {
   text-align: center;
   font-size: 17px;
@@ -93,8 +94,8 @@ input::placeholder {
 
 .unitInputBox small {
   display: block;
-  margin: 0 auto; 
-  text-align: center; 
+  margin: 0 auto;
+  text-align: center;
 }
 
 .registerButton input {
@@ -126,7 +127,7 @@ small {
   font-size: 18px;
 }
 
-.hide{
+.hide {
   visibility: hidden;
 }
 
