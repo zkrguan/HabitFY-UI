@@ -16,7 +16,7 @@ const notyf = new Notyf(); // initializing new instance of Notyf
 })
 export class RegisterComponent {
   userId: string = '';
-  userEmail:string='';
+  userEmail: string = '';
 
   // initializing it to true and changing it based on GET request response
   isFirstTimeRegistering: boolean = true;
@@ -189,7 +189,7 @@ export class RegisterComponent {
   async updateUserFirstLoginStatus() {
     try {
       const user = await Auth.currentAuthenticatedUser(); // getting current user's information from AWS Cognito
-       // changes custom attribute (firstLogin) to false 
+      // changes custom attribute (firstLogin) to false 
       await Auth.updateUserAttributes(user, {
         'custom:firstLogin': 'false',
       });

@@ -1,8 +1,8 @@
-.mainDiv{
+.mainDiv {
     color: white;
 }
 
-.title{
+.title {
     text-align: center;
     color: whitesmoke;
     font-size: 3.5rem;
@@ -10,14 +10,14 @@
     padding: 2.5%;
 }
 
-.description{
+.description {
     color: whitesmoke;
     font-family: 'Chakra Petch', sans-serif;
     font-size: 18px;
     padding-bottom: 2.5%;
 }
 
-.member-description{
+.member-description {
     color: whitesmoke;
     font-family: 'Chakra Petch', sans-serif;
     font-size: 18px;
@@ -25,7 +25,7 @@
     text-align: center;
 }
 
-.description-header{
+.description-header {
     text-align: center;
     color: whitesmoke;
     font-family: 'Chakra Petch', sans-serif;
@@ -33,7 +33,7 @@
     padding-top: 2.5%;
 }
 
-.img-fluid{
+.img-fluid {
     padding-bottom: 2.5%;
 }
 
@@ -41,7 +41,7 @@
     border-style: solid;
 }
 
-.rounded-circle{
+.rounded-circle {
     display: block;
     margin-left: auto;
     margin-right: auto;

@@ -12,7 +12,7 @@ import { Register } from '../interfaces/register';
   providedIn: 'root',
 })
 export class RegisterProfileService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   // included access token in the headers
   // may not require based on implementation of these routes in backend

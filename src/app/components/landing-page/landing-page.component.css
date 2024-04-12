@@ -1,25 +1,24 @@
-.mainDiv{
+.mainDiv {
     color: white;
 }
 
-.habitFY{
+.habitFY {
     font-size: 3.5rem;
     font-weight: bold;
 }
 
-div button{
+div button {
     font-size: 19px;
-    background-color: rgb(83, 199, 51,0.7);
+    background-color: rgb(83, 199, 51, 0.7);
     border: 0;
     font-weight: 600;
 }
 
-.description{
+.description {
     font-size: 18px;
     margin-top: 5px;
 }
 
-img{
+img {
     width: 650px;
 }
-  

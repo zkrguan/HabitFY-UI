@@ -79,11 +79,12 @@
             <div class="d-flex justify-content-center align-items-center">
               Logged Activities
               <div class="date-picker-container ml-2">
-                <input type="date" id="selectedDate" name="selectedDate" [(ngModel)]="selectedDate" (change)="basedOnSelectedDate()" [max]="upToDateSelection"/>
+                <input type="date" id="selectedDate" name="selectedDate" [(ngModel)]="selectedDate"
+                  (change)="basedOnSelectedDate()" [max]="upToDateSelection" />
               </div>
             </div>
           </div>
-          
+
           <div #simplebarForScroll [class.forScrollingProgressRecord]="receivedProgressRecord.length > 2"
             *ngIf="receivedProgressRecord.length">
             <div *ngFor="let pr of receivedProgressRecord" class="innerCard card mx-auto" style="width: 24rem;">
@@ -91,7 +92,7 @@
                 <p class="card-text m-0 loggedPTag"><span>Note:</span> {{ pr.notes }}</p>
                 <p class="card-text m-0 loggedPTag"><span>Completed Value:</span> {{ pr.completedValue }}
                   {{goalDataById.unit}}</p>
-                  <p class="card-text m-0 loggedPTag"><span>Created Time:</span> {{ pr.createdTime | date: 'medium'}}</p>
+                <p class="card-text m-0 loggedPTag"><span>Created Time:</span> {{ pr.createdTime | date: 'medium'}}</p>
               </div>
             </div>
           </div>

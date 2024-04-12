@@ -7,7 +7,7 @@ import { Auth } from 'aws-amplify';
   styleUrls: ['./landing-page.component.css']
 })
 export class LandingPageComponent {
-  constructor() {}
+  constructor() { }
   onLogin() {
     Auth.federatedSignIn();
   }

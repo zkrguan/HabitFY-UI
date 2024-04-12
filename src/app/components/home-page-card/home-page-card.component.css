@@ -140,27 +140,27 @@ form {
 
 .date-picker-container input[type="date"] {
     position: relative;
-    width: 32px; 
-    height: 32px; 
+    width: 32px;
+    height: 32px;
     cursor: pointer;
     border: none;
     background: transparent;
-    color: transparent; 
+    color: transparent;
     overflow: hidden;
     -webkit-appearance: none;
 }
 
 .date-picker-container input[type="date"]:focus {
     outline: none;
-    border: none; 
-    box-shadow: none; 
+    border: none;
+    box-shadow: none;
 }
 
 .date-picker-container input[type="date"]:focus::-webkit-datetime-edit-year-field,
 .date-picker-container input[type="date"]:focus::-webkit-datetime-edit-month-field,
 .date-picker-container input[type="date"]:focus::-webkit-datetime-edit-day-field,
 .date-picker-container input[type="date"]:focus::-webkit-datetime-edit-fields-wrapper {
-    display: none; 
+    display: none;
 }
 
 .date-picker-container input[type="date"]:focus::-ms-clear,
