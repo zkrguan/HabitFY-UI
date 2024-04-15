@@ -132,9 +132,12 @@ export class HomeUserProfileComponent {
     // returns right hand operand if left hand operand is null or undefined because of ??
     const plannedGoal = this.userDailyStatistics.data.planedToFinishGoalCount ?? 0;
     const actualFinishedGoal = this.userDailyStatistics.data.actualFinishedGoalCount ?? 0;
-    if (plannedGoal > 0) {
+    if (plannedGoal > 0 && plannedGoal > actualFinishedGoal) {
       // calculating goal completion in percentage and in whole number
       return Math.round((actualFinishedGoal / plannedGoal) * 100);
+    }
+    else if (actualFinishedGoal > plannedGoal) {
+      return 100;
     } else {
       return 0; // no need to calculate if planned goal is 0
     }
@@ -144,7 +147,7 @@ export class HomeUserProfileComponent {
   getBeatingCompetitorPercentage(): number {
     const beating = this.userDailyStatistics.data.beatingCompetitorPercentage ?? 0;
     const totalUser = this.userDailyStatistics.data.totalUserCountInPostalCode ?? 0;
-    if (beating > 0) {
+    if (beating > 0 && totalUser > 0) {
       return Math.round((beating / totalUser) * 100);
     } else {
       return 0;
@@ -155,7 +158,7 @@ export class HomeUserProfileComponent {
   getUsersAtSameLevel(): number {
     const sameLevelUsers = this.userDailyStatistics.data.samePerformanceUsersCount ?? 0;
     const totalUser = this.userDailyStatistics.data.totalUserCountInPostalCode ?? 0;
-    if (sameLevelUsers > 0) {
+    if (sameLevelUsers > 0 && totalUser > 0) {
       return Math.round((sameLevelUsers / totalUser) * 100);
     } else {
       return 0;
